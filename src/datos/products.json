@@ -552,8 +552,5 @@
            "https://i.dummyjson.com/data/products/29/thumbnail.webp"
         ]
      }
-  ],
-  "total":100,
-  "skip":0,
-  "limit":30
+  ]
 }

@@ -1,0 +1,17 @@
+[
+    {
+        "id_destaca": 1,
+        "nom_destaca": "Notebooks",
+        "cat_destaca": "laptops"
+    },
+    {
+        "id_destaca": 2,
+        "nom_destaca": "Decoración",
+        "cat_destaca": "home-decoration"
+    },
+    {
+        "id_destaca": 3,
+        "nom_destaca": "Celulares",
+        "cat_destaca": "smartphones"
+    }
+]

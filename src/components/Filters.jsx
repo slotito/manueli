@@ -3,7 +3,7 @@ import '../estilos/Filters.css'
 import PropTypes from 'prop-types'  // para validar tipos de datos y eslinter no me moleste
 
 
-export function Filters({ onChange }) {
+export function Filters({ onChange }) {   // desestructuración, sino tendría que llamar a props.onChange
     
     const [minPrice, setMinPrice] = useState(0) // para poder mostrar el valor del input range
     const [selectedCategory, setSelectedCategory] = useState('all');
