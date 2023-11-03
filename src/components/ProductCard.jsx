@@ -1,20 +1,20 @@
 
-export function ProductCard({id_destaca, nom_destaca, cat_destaca}) {
+export function ProductCard({ title, price, category, discountPercentage, image}) {
     return (
 
 
 <div className="product">
     <div className="product-img">
-        <img src="../../site/img/product01.png" alt="" />
+        <img src={image} alt="" />
         <div className="product-label">
-            <span className="sale">-30%</span>
-            <span className="new">NEW</span>
+            <span className="sale">-{discountPercentage}%</span>
+            <span className="new">NUEVO</span>
         </div>
     </div>
     <div className="product-body">
-        <p className="product-category">Category</p>
-        <h3 className="product-name"><a href="#">product name goes here</a></h3>
-        <h4 className="product-price">$980.00 <del className="product-old-price">$990.00</del></h4>
+        <p className="product-category">{category}</p>
+        <h3 className="product-name"><a href="#">{title}</a></h3>
+        <h4 className="product-price">$ {price} <del className="product-old-price">${(price / (1-discountPercentage/100)).toFixed(0 )}</del></h4>
         <div className="product-rating">
             <i className="fa fa-star"></i>
             <i className="fa fa-star"></i>

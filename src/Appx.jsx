@@ -8,6 +8,8 @@ import { Header } from './components/HeaderOld'
 import Home from "./pages/Home/Home";
 import { Products } from './components/Products.jsx'
 
+
+
 //import DetailProducts from "./pages/Products/Products";
 
 //import { Filters } from './components/Filters'

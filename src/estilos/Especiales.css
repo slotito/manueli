@@ -1,11 +1,31 @@
 
 .sectionEsp1 {
-
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
     height: auto;
- 
+}
 
-	
+.sectionEsp2 {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    height: auto;
+}
+
+
+.product .product-img {
+    height: 50%;
+}
+
+.product .product-img img{
+    height: 100%;
+}
+
+.product {   /* agregar a la clase product */
+    margin: 7px;
+}
+
+.sectionEsp1 {
+    margin-bottom: 20px;
 }

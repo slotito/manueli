@@ -3,8 +3,9 @@ import "./Home.css"
 // import { useState } from 'react';
 // import { products as inicialProducts } from '../../datos/products.json'
 // import ProductsOld from "../Products/ProductsOld";
-import SeccionNuevosDestacados from "../../components/NuevosDestacados";
+import SeccionDestacados from "../../components/SeccionDestacados";
 import { Footer } from "../../components/Footer";
+import { SeccionNuevos } from "../../components/SeccionNuevos";
 
 
 export function Home() {
@@ -14,9 +15,11 @@ export function Home() {
     return (
         <>
 
-        <SeccionNuevosDestacados />
+        <SeccionDestacados />
         {/* <ProductsOld products={products} /> */}
+        <SeccionNuevos />
         <Footer />
+
 
 
         </>

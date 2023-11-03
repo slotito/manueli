@@ -5,7 +5,7 @@ import { MongoClient, ServerApiVersion } from 'mongodb';
 const uri = "mongodb+srv://cualquiera:cualquiera@cluster0.sg1k4e6.mongodb.net/?retryWrites=true&w=majority";
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
-const client = new MongoClient(uri, {
+export const client = new MongoClient(uri, {
   serverApi: {
     version: ServerApiVersion.v1,
     strict: true,
@@ -13,7 +13,7 @@ const client = new MongoClient(uri, {
   }
 });
 
-async function run() {
+/* async function run() {
   try {
     // Connect the client to the server	(optional starting in v4.7)
     await client.connect();
@@ -26,7 +26,7 @@ async function run() {
   }
 }
 run().catch(console.dir);
-
+ */
 
 export async function queryCollection() {
   try {
@@ -42,15 +42,9 @@ export async function queryCollection() {
     // Imprimir los documentos encontrados
     console.log("Documentos en la colección 'miColeccion':");
     console.log(result);
-    
   } catch (error) {
     console.error("Error al consultar la colección:", error);
   }
 }
 
-export async function closeDatabase() {
-  // Cerrar la conexión cuando sea necesario
-  await client.close();
-}
-
-queryCollection();
+//queryCollection();

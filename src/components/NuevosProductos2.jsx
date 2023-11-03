@@ -1,14 +1,33 @@
 import { ProductCard } from "./ProductCard";
+import environments from "../datos/environments.js";
 import enPagina_nuevos from '../datos/enPagina_nuevos.json';
 
-import { useProducts } from '../context/ProductsContext';
+import { useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
 
+export function SeccionNuevosProductos2() {
 
-export function SeccionNuevosProductos() {
+    const [ products, setProducts ] = useState([]);
+	const [selectedCategory, setSelectedCategory] = useState(''); // Inicialmente, no hay categoría seleccionada
 
-	const productsData = useProducts();
+    const getProducts = async () => {
+        try{
+            const response = await fetch(environments.productsUrl);
+            const data = await response.json();
+            setProducts(data);   // Carga 'products'
+			//console.log("el resultado de la consulta es: ", data)
+        }catch(err){
+            console.error(err);
+        }
+    }
+	
+    useEffect(()=>{
+            getProducts();
+    }, [])
+
 	const productsCards  = enPagina_nuevos.map((item) => {
-		const product = productsData.products.find(product => (product.id === item.id_nuevo));
+
+		const product = products.find(product => (product.id === item.id_nuevo && product.category === selectedCategory));
 		if (product) {
 				return (
 					<ProductCard
@@ -22,6 +41,9 @@ export function SeccionNuevosProductos() {
 				)
 		}
 	});
+
+	const noProductsFound = productsCards.every((product) => !product);
+
 	return (
         <>
 
@@ -35,14 +57,16 @@ export function SeccionNuevosProductos() {
 							
 							<div className="section-nav">
 								<ul className="section-tab-nav tab-nav">
-									<li className="active"><a data-toggle="tab" href="#tab1">Notebooks</a></li>
-									<li><a data-toggle="tab" href="#tab1">Celulares</a></li>
-									<li><a data-toggle="tab" href="#tab1">Camaras</a></li>
-									<li><a data-toggle="tab" href="#tab1">Accesorios</a></li>
+{/* 									<li className="active"><a data-toggle="tab" href="#tab1">Notebooks</a></li>
+ */}
+									<li><NavLink onClick={() => setSelectedCategory('laptops')}>Notebooks</NavLink></li>
+									<li><NavLink onClick={() => setSelectedCategory('smartphones')}>Celulares</NavLink></li>
+									<li><NavLink onClick={() => setSelectedCategory('fragrances')}>Fragancias</NavLink></li>
+									<li><NavLink onClick={() => setSelectedCategory('home-decoration')}>Decoración</NavLink></li>
 								</ul>
 							</div>
 						</div>
-					</div>
+					</div>	
 
 					<div className="section">
                 <div className="container">
@@ -53,7 +77,11 @@ export function SeccionNuevosProductos() {
                                     <div id="tab1" className="tab-pane active">
                                         <div className="products-slick" data-nav="#slick-nav-1">
                                             <div className='sectionEsp2'>
-											{productsCards}
+												{noProductsFound ? (
+													<h3>No hay novedades en esta categoría</h3>
+												) : (
+													productsCards
+												)}
                                             </div>
                                         </div>
                                     </div>
@@ -67,13 +95,8 @@ export function SeccionNuevosProductos() {
 				</div>
 			</div>
 		</div>
-
-
-
-
-
         </>
     );
 }
 
-export default SeccionNuevosProductos;
+export default SeccionNuevosProductos2;

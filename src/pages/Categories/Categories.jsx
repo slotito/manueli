@@ -1,28 +1,32 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import './Categories.css'
-import { products as inicialProducts } from '../../datos/products.json'
+
+import environments from '../../datos/environments.js';
 
 const MuestraCategoria = () => { 
 
-    const { lcategory } = useParams();
-    const [category, setCategory] = useState(category)
+    const { category } = useParams();
+    const [ selectedCategory, setCategory] = useState(category.slice(1))
+    const [ products, setProducts ] = useState([]);
 
-    const getCategoryByName = async (lcategory) => {
+
+    //console.log(selectedCategory)
+
+    const getCategoryByName = async (categoryName) => {
         try {
-            // const response = await fetch(`http://localhost:5173/api/products/category/${lcategory}`)
-            const response = await fetch(inicialProducts)
+            const response = await fetch(environments.productsUrl);
             const json = await response.json()
-            const result = json.filter(product => product.category === lcategory)
-            setCategory(result)
+            const result = json.filter(product => product.category === categoryName)
+            setProducts(result)
         } catch (error) {
             console.log(error)
         }
     }
         
     useEffect(() => {
-        getCategoryByName(lcategory)
-    }, [lcategory])
+        getCategoryByName(selectedCategory)
+    }, [selectedCategory])
 
         return (
             <>
@@ -35,7 +39,7 @@ const MuestraCategoria = () => {
                                         <img src="../img/shop01.png" alt="" />
                                     </div>
                                     <div className="shop-body">
-                                        <h3>Notebooks</h3>
+                                        <h3>{category}</h3>
                                         <a href="#" className="cta-btn">Compra ahora <i className="fa fa-arrow-circle-right"></i></a>
                                     </div>
                                 </div>
