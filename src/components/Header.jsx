@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 
 
 export function Header() {
@@ -23,9 +24,11 @@ export function Header() {
                         <div className="row">
                             <div className="col-md-3">
                                 <div className="header-logo">
-                                    <a href="#" className="logo">
-                                        <img src="siteX/img/logo.png" alt="" />
+                                    <NavLink to="/" className="logo">
+                                    <a href="#" className="logo2">
+                                        <img src="../../site/img/logoR-min.png" alt="" />
                                     </a>
+                                    </NavLink>
                                 </div>
                             </div>
 

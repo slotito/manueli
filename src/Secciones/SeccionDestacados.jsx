@@ -10,7 +10,7 @@ export function SeccionDestacados() {
 	//const dataMongo = queryCollection();
 	//console.log(dataMongo);
 
-	const destacadosComponents  = destacadosData.map((destacado) => (
+	const destacadosComponentsSec  = destacadosData.map((destacado) => (
 		<SeccionDestacadosSec
 			key={destacado.id_destaca}
 			id_destaca={destacado.id_destaca}
@@ -25,8 +25,14 @@ export function SeccionDestacados() {
 		<div className="section">
 			<div className="container">
 				<div className="row">
-					
-					{destacadosComponents}
+
+					<div className="col-md-12">
+						<div className="section-title">
+							<h3 className="title">Categorías Destacadas</h3>
+						</div>
+					</div>
+
+					{destacadosComponentsSec}
 
 				</div>
 			</div>

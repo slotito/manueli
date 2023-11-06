@@ -19,6 +19,7 @@ export function ProductsProvider({ children }) {
 }
 
 
+
 ProductsProvider.propTypes = {
     children: PropTypes.node, // Define 'children' como un prop de tipo 'node'
 };

@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import './Categories.css'
 
 import environments from '../../datos/environments.js';
+import { ProductCard } from '../../components/ProductCard';
 
 const MuestraCategoria = () => { 
 
@@ -24,29 +25,26 @@ const MuestraCategoria = () => {
         }
     }
         
-    useEffect(() => {
-        getCategoryByName(selectedCategory)
-    }, [selectedCategory])
+
+    const destacadosComponentsSec  = getCategoryByName.map((destacado) => (
+		<ProductCard
+			key={destacado.id_destaca}
+			id_destaca={destacado.id_destaca}
+			nom_destaca={destacado.nom_destaca}
+			cat_destaca={destacado.cat_destaca}
+		/>
+	));
+ 
 
         return (
             <>
-                <div className="section">
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-md-4 col-xs-6">
-                                <div className="shop">
-                                    <div className="shop-img">
-                                        <img src="../img/shop01.png" alt="" />
-                                    </div>
-                                    <div className="shop-body">
-                                        <h3>{category}</h3>
-                                        <a href="#" className="cta-btn">Compra ahora <i className="fa fa-arrow-circle-right"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+  
+              <div id="store" className="col-md-9">
+  
+                
+                {destacadosComponentsSec}
                 </div>
+
             </>
 
 

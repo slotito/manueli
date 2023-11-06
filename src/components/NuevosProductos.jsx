@@ -13,6 +13,7 @@ export function SeccionNuevosProductos() {
 				return (
 					<ProductCard
 						key={product.id}
+						id={product.id}
 						title={product.title}
 						price={product.price}
 						category={product.category}
@@ -53,7 +54,7 @@ export function SeccionNuevosProductos() {
                                     <div id="tab1" className="tab-pane active">
                                         <div className="products-slick" data-nav="#slick-nav-1">
                                             <div className='sectionEsp2'>
-											{productsCards}
+												{productsCards}
                                             </div>
                                         </div>
                                     </div>

@@ -1,11 +1,45 @@
+//import './Products.css';
+import { useParams } from 'react-router-dom';
+import { ProductCard } from '../../components/ProductCard';
+import { useProducts } from '../../context/ProductsContext';
 
+const Products = () => {
 
-export function Products() {
+    const productsData = useProducts();
+    const { category } = useParams(); // mismo nombre que en el App.jsx
+
+    const filteredProducts = productsData.products.filter(product => product.category === category);
+
+    
     return (
         <>
-        <h1>Productos</h1>
+            <h2>{ category ? `Products / ${category}` : 'All Products'}</h2>
+        
+
+        <div id="store" className="col-md-9">
+        <div id="store" className="sectionEsp1">
+
+		<div className="section">
+			<div className="container">
+				<div className="row">
+
+            {filteredProducts.map(product => (
+                <ProductCard
+                    key={product.id}
+                    title={product.title}
+                    price={product.price}
+                    category={product.category}
+                    discountPercentage={product.discountPercentage}
+                    image={product.thumbnail}
+                />
+            ))}
+            </div>
+            </div>
+            </div>
+            </div>
+            </div>
         </>
-    );
+    )
 }
 
-export default Products;
+export default Products
