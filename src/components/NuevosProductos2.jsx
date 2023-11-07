@@ -5,10 +5,10 @@ import enPagina_nuevos from '../datos/enPagina_nuevos.json';
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 
-export function SeccionNuevosProductos2() {
+export function SeccionNuevosProductos2({xDefecto}) {
 
     const [ products, setProducts ] = useState([]);
-	const [selectedCategory, setSelectedCategory] = useState(''); // Inicialmente, no hay categoría seleccionada
+	const [selectedCategory, setSelectedCategory] = useState(xDefecto); // Inicialmente, no hay categoría seleccionada
 
     const getProducts = async () => {
         try{
@@ -27,7 +27,7 @@ export function SeccionNuevosProductos2() {
 
 	const productsCards  = enPagina_nuevos.map((item) => {
 
-		const product = products.find(product => (product.id === item.id_nuevo && product.category === selectedCategory));
+		const product = products.find(product => ((product.id === item.id_nuevo && product.category === selectedCategory) || (product.id === item.id_nuevo && selectedCategory === "all")));
 		if (product) {
 				return (
 					<ProductCard

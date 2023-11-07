@@ -1,57 +1,43 @@
-import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import './Categories.css'
+import '../../estilos/Especiales.css'
+import SeccionDestacadosSec from '../../Secciones/SeccionDestacadosSec';
+import { useProducts } from '../../context/ProductsContext';
 
-import environments from '../../datos/environments.js';
-import { ProductCard } from '../../components/ProductCard';
+export function Categories() {
 
-const MuestraCategoria = () => { 
+    const productsData = useProducts();
 
-    const { category } = useParams();
-    const [ selectedCategory, setCategory] = useState(category.slice(1))
-    const [ products, setProducts ] = useState([]);
+    const uniqueCategories = [...new Set(productsData.products.map((item) => item.category))];
 
-
-    //console.log(selectedCategory)
-
-    const getCategoryByName = async (categoryName) => {
-        try {
-            const response = await fetch(environments.productsUrl);
-            const json = await response.json()
-            const result = json.filter(product => product.category === categoryName)
-            setProducts(result)
-        } catch (error) {
-            console.log(error)
-        }
-    }
-        
-
-    const destacadosComponentsSec  = getCategoryByName.map((destacado) => (
-		<ProductCard
-			key={destacado.id_destaca}
-			id_destaca={destacado.id_destaca}
-			nom_destaca={destacado.nom_destaca}
-			cat_destaca={destacado.cat_destaca}
+	const destacadosComponentsSec  = uniqueCategories.map((item) => (
+		<SeccionDestacadosSec
+			key={item}
+			nom_destaca={item}
+			cat_destaca={item}
 		/>
 	));
- 
 
-        return (
-            <>
-  
-              <div id="store" className="col-md-9">
-  
-                
-                {destacadosComponentsSec}
-                </div>
+    return (
 
-            </>
+		<>
+		<div className="section">
+			<div className="container">
+				<div className="row">
 
+					<div className="col-md-12">
+						<div className="section-title">
+							<h3 className="title">Todas las categorías</h3>
+						</div>
+					</div>
 
+					{destacadosComponentsSec}
 
+				</div>
+			</div>
+		</div>
 
-        )
-    }
+		</>
+    );
+}
 
+export default Categories;
 
-export default MuestraCategoria;

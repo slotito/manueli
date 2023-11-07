@@ -13,7 +13,6 @@ export function NavBar() {
 						<li className="active"><NavLink to="/">Inicio</NavLink></li>
 						<li><NavLink to="/nuevos2">Novedades</NavLink></li>
 						<li><NavLink to="/categorias">Categorias</NavLink></li>
-						<li><NavLink to="/destacados">Destacados</NavLink></li>
 					</ul>
 				</div>
 			</div>

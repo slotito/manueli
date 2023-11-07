@@ -16,6 +16,7 @@ import { useEffect, useState } from 'react';
 
 import { ProductsProvider } from './context/ProductsContext';
 import { CartProvider } from './context/CartContext';
+import ProductSection from './pages/Products/ProductSection';
 
 function App() {
 
@@ -42,13 +43,13 @@ function App() {
             <NavBar />
             <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/nuevos" element={<SeccionNuevosProductos />} />
-                <Route path="/nuevos2" element={<SeccionNuevosProductos2 />} />
-                <Route path="/categorias" element={<Products />} />
-                <Route path=":category" element={<Categories />} />
+{/*                 <Route path="/nuevos" element={<SeccionNuevosProductos />} /> */}
+                <Route path="/nuevos2" element={<SeccionNuevosProductos2 xDefecto="all"/>} />
+                <Route path="/categorias" element={<Categories />}>
+                    <Route path=":category" element={<ProductSection />} />
+                </Route>
                 <Route path="/products" element={<Products />}>
-                    <Route path=":id" element={<ProductPage />} />
-                    <Route path=":category" element={<Products />} />
+                    <Route path=":id" element={<ProductSection />} />
                  </Route>
             </Routes>
         </div>
