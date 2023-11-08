@@ -5,8 +5,9 @@ import { useState } from 'react';
 export function NuevosDestacadosSec({ nom_destaca, cat_destaca}) {
 
 	const [selectedCategory, setSelectedCategory] = useState(''); // Inicialmente, no hay categoría seleccionada
-
+    console.log(selectedCategory)
     return (
+      
         <>
             <div className="col-md-4 col-xs-6">
                 <div className="shop">
@@ -28,7 +29,7 @@ export function NuevosDestacadosSec({ nom_destaca, cat_destaca}) {
 }
 
 NuevosDestacadosSec.propTypes = {
-    id_destaca: PropTypes.number.isRequired, 
+    id_destaca: PropTypes.number, 
     nom_destaca: PropTypes.string.isRequired,
     cat_destaca: PropTypes.string
   };

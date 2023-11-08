@@ -57,8 +57,6 @@ export function SeccionNuevosProductos2({xDefecto}) {
 							
 							<div className="section-nav">
 								<ul className="section-tab-nav tab-nav">
-{/* 									<li className="active"><a data-toggle="tab" href="#tab1">Notebooks</a></li>
- */}
 									<li><NavLink onClick={() => setSelectedCategory('laptops')}>Notebooks</NavLink></li>
 									<li><NavLink onClick={() => setSelectedCategory('smartphones')}>Celulares</NavLink></li>
 									<li><NavLink onClick={() => setSelectedCategory('fragrances')}>Fragancias</NavLink></li>

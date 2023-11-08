@@ -31,7 +31,7 @@ export function SeccionDestacados() {
 							<h3 className="title">Categorías Destacadas</h3>
 						</div>
 					</div>
-
+					
 					{destacadosComponentsSec}
 
 				</div>

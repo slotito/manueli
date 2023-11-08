@@ -6,13 +6,13 @@ import Products from './pages/Products/Products'
 import ProductPage from './pages/Products/ProductPage'
 import Categories from './pages/Categories/Categories';
 
-import SeccionNuevosProductos from './components/NuevosProductos';
+//import SeccionNuevosProductos from './components/NuevosProductos';
 import SeccionNuevosProductos2 from './components/NuevosProductos2';
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 //import { queryCollection , result} from './datos/testMongoDB2.js';
-import { useEffect, useState } from 'react';
+//import { useEffect, useState } from 'react';
 
 import { ProductsProvider } from './context/ProductsContext';
 import { CartProvider } from './context/CartContext';
@@ -43,13 +43,13 @@ function App() {
             <NavBar />
             <Routes>
                 <Route path="/" element={<Home />} />
-{/*                 <Route path="/nuevos" element={<SeccionNuevosProductos />} /> */}
                 <Route path="/nuevos2" element={<SeccionNuevosProductos2 xDefecto="all"/>} />
+                <Route path=":category" element={<ProductSection />}/>
                 <Route path="/categorias" element={<Categories />}>
                     <Route path=":category" element={<ProductSection />} />
                 </Route>
                 <Route path="/products" element={<Products />}>
-                    <Route path=":id" element={<ProductSection />} />
+                    <Route path=":id" element={<ProductPage />} />
                  </Route>
             </Routes>
         </div>

@@ -1,5 +1,5 @@
 
-const ProductSection = () => {
+export function ProductSection () {
 
     return (
 
@@ -10,19 +10,19 @@ const ProductSection = () => {
                 <div className="col-md-5 col-md-push-2">
                     <div id="product-main-img">
                         <div className="product-preview">
-                            <img src="./img/product01.png" alt="" />
+                            <img src="../../../site/img/product01.png" alt="" />
                         </div>
 
                         <div className="product-preview">
-                            <img src="./img/product03.png" alt="" />
+                            <img src="../../../site/img/product03.png" alt="" />
                         </div>
 
                         <div className="product-preview">
-                            <img src="./img/product06.png" alt="" />
+                            <img src="../../../site/img/product06.png" alt="" />
                         </div>
 
                         <div className="product-preview">
-                            <img src="./img/product08.png" alt="" />
+                            <img src="../../../site/img/product08.png" alt="" />
                         </div>
                     </div>
                 </div>
@@ -30,19 +30,19 @@ const ProductSection = () => {
                 <div className="col-md-2  col-md-pull-5">
                     <div id="product-imgs">
                         <div className="product-preview">
-                            <img src="./img/product01.png" alt="" />
+                            <img src="../../../site/img/product01.png" alt="" />
                         </div>
 
                         <div className="product-preview">
-                            <img src="./img/product03.png" alt="" />
+                            <img src="../../../site/img/product03.png" alt="" />
                         </div>
 
                         <div className="product-preview">
-                            <img src="./img/product06.png" alt="" />
+                            <img src="../../../site/img/product06.png" alt="" />
                         </div>
 
                         <div className="product-preview">
-                            <img src="./img/product08.png" alt="" />
+                            <img src="../../../site/img/product08.png" alt="" />
                         </div>
                     </div>
                 </div>
