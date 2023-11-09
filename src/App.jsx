@@ -44,13 +44,12 @@ function App() {
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/nuevos2" element={<SeccionNuevosProductos2 xDefecto="all"/>} />
-                <Route path=":category" element={<ProductSection />}/>
+                <Route path=":category" element={<Products />}/>
                 <Route path="/categorias" element={<Categories />}>
                     <Route path=":category" element={<ProductSection />} />
                 </Route>
-                <Route path="/products" element={<Products />}>
-                    <Route path=":id" element={<ProductPage />} />
-                 </Route>
+                <Route path="/products" element={<Products />} />
+                <Route path="/products/:id" element={<ProductPage />} />
             </Routes>
         </div>
         </BrowserRouter>

@@ -28,12 +28,13 @@ export function NuevosDestacadosSec({ nom_destaca, cat_destaca}) {
     )
 }
 
+export default NuevosDestacadosSec;
+
+
 NuevosDestacadosSec.propTypes = {
     id_destaca: PropTypes.number, 
     nom_destaca: PropTypes.string.isRequired,
     cat_destaca: PropTypes.string
   };
 
-
-export default NuevosDestacadosSec;
 

@@ -10,7 +10,7 @@ const Products = () => {
 
     const filteredProducts = productsData.products.filter(product => product.category === category);
 
-    
+    //console.log(category)    
     return (
         <>
             <h2>{ category ? `Products / ${category}` : 'All Products'}</h2>
@@ -23,19 +23,19 @@ const Products = () => {
 			<div className="container">
 				<div className="row">
 
-            {filteredProducts.map(product => (
-                <ProductCard
-                    key={product.id}
-                    title={product.title}
-                    price={product.price}
-                    category={product.category}
-                    discountPercentage={product.discountPercentage}
-                    image={product.thumbnail}
-                />
-            ))}
+                        {filteredProducts.map(product => (
+                        <ProductCard
+                            key={product.id}
+                            title={product.title}
+                            price={product.price}
+                            category={product.category}
+                            discountPercentage={product.discountPercentage}
+                            image={product.thumbnail}
+                        />
+                    ))}
+                </div>
             </div>
-            </div>
-            </div>
+        </div>
             </div>
             </div>
         </>

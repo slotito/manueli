@@ -18,6 +18,7 @@ export function ProductsProvider({ children }) {
   );
 }
 
+export { ProductsContext }; // Exporta el contexto
 
 
 ProductsProvider.propTypes = {
