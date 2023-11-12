@@ -1,11 +1,11 @@
 //import './App.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { products as inicialProducts } from './datos/products.json'
+import { products as inicialProducts } from '../datos/products.json'
 
 import { useState } from 'react'
-import { Header } from './components/HeaderOld'
+import { Header } from '../components/HeaderOld.jsx'
 
-import Home from "./pages/Home/Home";
+import Home from "../pages/Home/Home.jsx";
 import { Products } from './components/Products.jsx'
 
 

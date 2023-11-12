@@ -10,7 +10,7 @@ export function ProductPage() {
 
     // const [products] = useState(inicialProducts)
     const { id }  = useParams() 
-    console.log(id)
+    //console.log(id)
 
     return (
         <>

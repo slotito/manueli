@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import './Categories.css'
 
-import environments from '../../datos/environments.js';
-import { ProductCard } from '../../components/ProductCard';
+import environments from '../datos/environments.js';
+import { ProductCard } from '../components/ProductCard.jsx';
 
 const MuestraCategoria = () => { 
 

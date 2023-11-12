@@ -1,14 +1,50 @@
-import { ProductsContext } from '../../context/ProductsContext'; 
-import { useContext } from 'react';
+
+import { useEffect, useState } from 'react';
+import { useProducts } from '../../context/ProductsContext';
 
 export function ProductSection ({id}) {
 
-    const productsData = useContext(ProductsContext);
-    const productsData2 = productsData.products
-    console.log(productsData2)
-    const product = productsData2.find((product) => product.id === id)
-    console.log("el product es " + product)
-    console.log("el id es " + id)
+    const productsData = useProducts();
+    const [vproduct, setvProduct] = useState(null);
+    const [loading, setLoading] = useState(true);
+    
+    useEffect(() => {
+        const fetchdata = async () => {
+            try {
+                if (productsData.products.length > 0) {
+                    const foundProduct = productsData.products.find(p => p.id === parseInt(id));
+                    if (foundProduct) {
+                        setvProduct(foundProduct);
+                    } else {
+                        setvProduct(null); // no debería ocurrir
+                    }
+                }
+            } catch (error) {
+                console.log(error);
+            } finally {
+                setLoading(false);
+            }
+        };
+        const fetchDataAsync = async () => {
+            await fetchdata(); // Espera la ejecución de fetchData antes de continuar
+        };
+
+        fetchDataAsync();
+    }, [productsData, id]);
+
+    
+    /* if (product === null || !product.id) {
+        console.log("el product es " + product.id);
+        console.log("el id es " + id);
+        return <div>No se encontró el producto</div>;
+    }
+ */
+    if (loading) {
+        return <div>Cargando...</div>;
+    }
+    if (!vproduct) {
+        return <div>No se encontró el producto</div>;
+    }
 
     return (
 
@@ -19,11 +55,11 @@ export function ProductSection ({id}) {
                     <div className="col-md-5 col-md-push-2">
                         <div id="product-main-img">
                             <div className="product-preview">
-                                <img src="../../../site/img/product01.png" alt="" />
+                                <img src={vproduct.thumbnail} alt="" />
                             </div>
 
-                            <div className="product-preview">
-                                <img src="../../../site/img/product03.png" alt="" />
+{/*                             <div className="product-preview">
+                                <img src={vproduct.thumbnail} alt="" />
                             </div>
 
                             <div className="product-preview">
@@ -33,48 +69,48 @@ export function ProductSection ({id}) {
                             <div className="product-preview">
                                 <img src="../../../site/img/product08.png" alt="" />
                             </div>
-                        </div>
+ */}                        </div>
                     </div>
 
                     <div className="col-md-2  col-md-pull-5">
                         <div id="product-imgs">
                             <div className="product-preview">
-                                <img src="../../../site/img/product01.png" alt="" />
+                                <img src={vproduct.images[0]} alt="" />
                             </div>
 
                             <div className="product-preview">
-                                <img src="../../../site/img/product03.png" alt="" />
+                                <img src={vproduct.images[1]} alt="" />
                             </div>
 
                             <div className="product-preview">
-                                <img src="../../../site/img/product06.png" alt="" />
+                                <img src={vproduct.images[2]} alt="" />
                             </div>
 
                             <div className="product-preview">
-                                <img src="../../../site/img/product08.png" alt="" />
+                                <img src={vproduct.images[3]} alt="" />
                             </div>
                         </div>
                     </div>
 
                     <div className="col-md-5">
                         <div className="product-details">
-                            <h2 className="product-name">cod.: {product.id } - {product.title}</h2>
+                            <h2 className="product-name">cod.: {vproduct.id } - {vproduct.title}</h2>
                             <div>
-                                <div className="product-rating">
+ {/*                                <div className="product-rating">
                                     <i className="fa fa-star"></i>
                                     <i className="fa fa-star"></i>
                                     <i className="fa fa-star"></i>
                                     <i className="fa fa-star"></i>
                                     <i className="fa fa-star-o"></i>
-                                </div>
+                                </div> */}
                             </div>
                             <div>
-                                <h3 className="product-price">$981.00 <del className="product-old-price">$990.00</del></h3>
-                                <span className="product-available">In Stock</span>
+                                <h3 className="product-price"> {vproduct.price} <del className="product-old-price">${(vproduct.price / (1-vproduct.discountPercentage/100)).toFixed(0 )}</del></h3>
+                                <span className="product-available">en Stock. Cantidad: {vproduct.stock}</span>
                             </div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                            <p>{vproduct.description}</p>
 
-                            <div className="product-options">
+{/*                             <div className="product-options">
                                 <label>
                                     Size
                                     <select className="input-select">
@@ -87,7 +123,7 @@ export function ProductSection ({id}) {
                                         <option value="0">Red</option>
                                     </select>
                                 </label>
-                            </div>
+                            </div> */}
 
                             <div className="add-to-cart">
                                 <div className="qty-label">
@@ -103,22 +139,21 @@ export function ProductSection ({id}) {
 
                             <ul className="product-btns">
                                 <li><a href="#"><i className="fa fa-heart-o"></i> add to wishlist</a></li>
-                                <li><a href="#"><i className="fa fa-exchange"></i> add to compare</a></li>
-                            </ul>
+{/*                                 <li><a href="#"><i className="fa fa-exchange"></i> add to compare</a></li>
+ */}                            </ul>
 
                             <ul className="product-links">
                                 <li>Category:</li>
-                                <li><a href="#">Headphones</a></li>
-                                <li><a href="#">Accessories</a></li>
+                                <li><a href="#">{vproduct.category}</a></li>
                             </ul>
 
-                            <ul className="product-links">
+{/*                             <ul className="product-links">
                                 <li>Share:</li>
                                 <li><a href="#"><i className="fa fa-facebook"></i></a></li>
                                 <li><a href="#"><i className="fa fa-twitter"></i></a></li>
                                 <li><a href="#"><i className="fa fa-google-plus"></i></a></li>
                                 <li><a href="#"><i className="fa fa-envelope"></i></a></li>
-                            </ul>
+                            </ul> */}
 
                         </div>
                     </div>

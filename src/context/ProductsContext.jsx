@@ -6,6 +6,7 @@ import productsData from '../datos/products.json';
 
 const ProductsContext = createContext();   // Creo el contexto
 
+// Pruebo un hook personalizado
 export function useProducts() {
   return useContext(ProductsContext);
 }

@@ -45,9 +45,8 @@ function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/nuevos2" element={<SeccionNuevosProductos2 xDefecto="all"/>} />
                 <Route path=":category" element={<Products />}/>
-                <Route path="/categorias" element={<Categories />}>
-                    <Route path=":category" element={<ProductSection />} />
-                </Route>
+                <Route path="/categorias" element={<Categories />} />
+                <Route path="/categorias/:category" element={<Products />} />
                 <Route path="/products" element={<Products />} />
                 <Route path="/products/:id" element={<ProductPage />} />
             </Routes>
