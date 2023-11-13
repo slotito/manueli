@@ -1,18 +1,21 @@
 
-import { useEffect, useState } from 'react';
-import { useProducts } from '../../context/ProductsContext';
+import { useEffect, useState, useContext } from 'react';
+import { useProducts } from '../../context/ProductsContext_v2';
+import { dataContext } from '../../context/DataContext';
 
 export function ProductSection ({id}) {
 
-    const productsData = useProducts();
+    //const productsData = useProducts();
+    const { productsData, cart, setCart } = useContext(dataContext);
+
     const [vproduct, setvProduct] = useState(null);
     const [loading, setLoading] = useState(true);
     
     useEffect(() => {
         const fetchdata = async () => {
             try {
-                if (productsData.products.length > 0) {
-                    const foundProduct = productsData.products.find(p => p.id === parseInt(id));
+                if (productsData.length > 0) {
+                    const foundProduct = productsData.find(p => p.id === parseInt(id));
                     if (foundProduct) {
                         setvProduct(foundProduct);
                     } else {

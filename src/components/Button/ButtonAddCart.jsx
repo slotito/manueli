@@ -1,7 +1,8 @@
 import PropTypes from "prop-types";
 
 function ButtonAddCart(props) {
-  //console.log(props);
+
+  console.log(props.handleClick);
   return (
     <button onClick={props.handleClick} className="add-to-cart-btn">
       <i className="fa fa-shopping-cart"></i>

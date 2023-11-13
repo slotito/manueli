@@ -1,17 +1,35 @@
+import { Link } from 'react-router-dom';
+
+import { useState , useContext, useEffect} from 'react';
 import enPagina_nuevos from '../datos/enPagina_nuevos.json';  // para destacar los nuevos
 import '../estilos/Especiales.css'
 
-import { useProducts } from '../context/ProductsContext';
+//import { useProducts } from '../context/ProductsContext_v2';
 import { ProductCard } from '../components/ProductCard';
-
-import { Link } from 'react-router-dom';
+import { dataContext } from '../context/DataContext';
 
 export function SeccionProductosNuevos() {
 
-    const productsData = useProducts();
+    //const productsData = useProducts();  // hook personalizado
+    const { productsData, cart, setCart } = useContext(dataContext);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+                if (productsData && productsData.length > 0) {
+                    setLoading(false);
+                } else {
+                    setLoading(true);
+                }
+    }, [productsData]);
+
+    if (loading) {
+        //console.log(productsData)
+        return <div>Cargando...</div>;
+    } else {
 
     const productsCards  = enPagina_nuevos.map((item) => {
-        const product = productsData.products.find(product => (product.id === item.id_nuevo && item.home_muestra));
+        //console.log(productsData)
+        const product = productsData.find(product => (product.id === item.id_nuevo && item.home_muestra));
         if (product) {
                 return (
                     <Link to={`/products/${product.id}`} key={product.id}>
@@ -28,7 +46,7 @@ export function SeccionProductosNuevos() {
                 )
         }
     });
-
+    
     return (
 		<>
             <div className="section">
@@ -57,4 +75,5 @@ export function SeccionProductosNuevos() {
             </div>	
 		</>
     );
+    }
 }

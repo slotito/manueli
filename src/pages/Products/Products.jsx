@@ -1,19 +1,30 @@
 //import './Products.css';
 import { useParams } from 'react-router-dom';
 import { ProductCard } from '../../components/ProductCard';
-import { useProducts } from '../../context/ProductsContext';
+import { useProducts } from '../../context/ProductsContext_v2';
+import { dataContext } from '../../context/DataContext';
+import { useContext } from 'react';
 
 const Products = () => {
 
-    const productsData = useProducts();
+    //const productsData = useProducts();
+    const { productsData, cart, setCart } = useContext(dataContext);
     const { category } = useParams(); // mismo nombre que en el App.jsx
 
-    const filteredProducts = productsData.products.filter(product => product.category === category);
+    const buyProduct = (product) => {
+        //setCart([...cart, product]);
+    }
 
-    //console.log(category)    
+    let filteredProducts;
+    if (!category) {
+        filteredProducts = productsData;
+    } else {
+        filteredProducts = productsData.filter(product => product.category === category);
+    }
+      
     return (
         <>
-            <h2>{ category ? `Products / ${category}` : 'All Products'}</h2>
+            {/* <h2>{ category ? `Products / ${category}` : 'All Products'}</h2> */}
         
             <div className="section">
                 <div className="container">

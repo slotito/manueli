@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 
 
 export function Header() {
@@ -59,10 +59,13 @@ export function Header() {
                                     <div className="dropdown">
                                         <a className="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
                                             <i className="fa fa-shopping-cart"></i>
-                                            <span>Mi Carrito</span>
+                                            <NavLink to="/cart">
+                                                <span>Mi Carrito</span>
+                                            </NavLink>
                                             <div className="qty">3</div>
                                         </a>
                                     </div>
+
 
                                 </div>
                             </div>

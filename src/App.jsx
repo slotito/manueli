@@ -1,3 +1,5 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 import { Header } from './components/Header';
 import { NavBar } from './components/NavBar';
 
@@ -9,12 +11,7 @@ import Categories from './pages/Categories/Categories';
 //import SeccionNuevosProductos from './components/NuevosProductos';
 import SeccionNuevosProductos2 from './components/NuevosProductos2';
 
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-
-//import { queryCollection , result} from './datos/testMongoDB2.js';
-//import { useEffect, useState } from 'react';
-
-import { ProductsProvider } from './context/ProductsContext';
+import DataProvider from './context/DataContext';
 import { CartProvider } from './context/CartContext';
 import ProductSection from './pages/Products/ProductSection';
 
@@ -35,7 +32,7 @@ function App() {
 
 
     return (
-        <ProductsProvider>
+        <DataProvider>
         <CartProvider>
         <BrowserRouter>
         <div>
@@ -53,7 +50,7 @@ function App() {
         </div>
         </BrowserRouter>
         </CartProvider>
-        </ProductsProvider>
+        </DataProvider>
     )
 }
 export default App;

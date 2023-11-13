@@ -35,7 +35,7 @@ export function ProductCard({ id, title, price, category, discountPercentage, im
             </div>
         </div>
         <div className="add-to-cart">
-            <ButtonAddCart title="al Carrito" handleClick={()=>{onAdd(1)}} />  {/* onAdd(count) */}
+            <ButtonAddCart title="al Carrito" handleClick={()=>{1}} />  {/* onAdd(count) */}
         </div>
     </div>
 

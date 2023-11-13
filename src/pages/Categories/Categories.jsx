@@ -1,12 +1,16 @@
 import '../../estilos/Especiales.css'
 import SeccionDestacadosSec from '../../Secciones/SeccionDestacadosSec';
-import { useProducts } from '../../context/ProductsContext';
+import { useProducts } from '../../context/ProductsContext_v2';
+import { dataContext } from '../../context/DataContext';
+import { useContext } from 'react';
 
 export function Categories() {
 
-    const productsData = useProducts();
+    //const productsData = useProducts();
+	const { productsData, cart, setCart } = useContext(dataContext);
 
-    const uniqueCategories = [...new Set(productsData.products.map((item) => item.category))];
+
+    const uniqueCategories = [...new Set(productsData.map((item) => item.category))];
 
 	const destacadosComponentsSec  = uniqueCategories.map((item) => (
 		<SeccionDestacadosSec
