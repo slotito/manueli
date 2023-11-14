@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import { ProductCard } from "./ProductCard";
 import environments from "../datos/environments.js";
 import enPagina_nuevos from '../datos/enPagina_nuevos.json';
@@ -5,10 +6,13 @@ import enPagina_nuevos from '../datos/enPagina_nuevos.json';
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 
+import { cartContext } from "../context/CartContext.jsx";
+
 export function SeccionNuevosProductos2({xDefecto}) {
 
     const [ products, setProducts ] = useState([]);
 	const [selectedCategory, setSelectedCategory] = useState(xDefecto); // Inicialmente, no hay categoría seleccionada
+	const { buyProduct } = useContext(cartContext);
 
     const getProducts = async () => {
         try{
@@ -37,6 +41,8 @@ export function SeccionNuevosProductos2({xDefecto}) {
 						category={product.category}
 						discountPercentage={product.discountPercentage}
 						image={product.thumbnail}
+						buyProduct={buyProduct}
+						cant={1}
 					/>
 				)
 		}

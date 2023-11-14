@@ -1,19 +1,25 @@
 //import './Products.css';
 import { useParams } from 'react-router-dom';
-import { ProductCard } from '../../components/ProductCard';
-import { useProducts } from '../../context/ProductsContext_v2';
-import { dataContext } from '../../context/DataContext';
 import { useContext } from 'react';
+
+import { ProductCard } from '../../components/ProductCard';
+import { dataContext } from '../../context/DataContext';
+import { cartContext } from '../../context/CartContext';
+
 
 const Products = () => {
 
-    //const productsData = useProducts();
-    const { productsData, cart, setCart } = useContext(dataContext);
+    const { productsData } = useContext(dataContext);
+    //const { cart, setCart } = useContext(cartContext);
+    //const { cartCount, setCartCount } = useContext(cartContext);
+    const { buyProduct } = useContext(cartContext);
     const { category } = useParams(); // mismo nombre que en el App.jsx
 
-    const buyProduct = (product) => {
-        //setCart([...cart, product]);
-    }
+/*     const buyProduct = (product) => {
+        console.log('Compraste:', product);
+        setCart([...cart, product]); // spread operator obtengo el carrito tal cuál está y le agrego el nuevo producto
+        setCartCount(cartCount + 1);
+    } */
 
     let filteredProducts;
     if (!category) {
@@ -35,17 +41,20 @@ const Products = () => {
  */}                        <div className="section">
                             <div className="container">
                                 <div className="row">
-
                                         {filteredProducts.map(product => (
                                         <ProductCard
                                             key={product.id}
+                                            id={product.id}
                                             title={product.title}
                                             price={product.price}
                                             category={product.category}
                                             discountPercentage={product.discountPercentage}
                                             image={product.thumbnail}
+                                            buyProduct={buyProduct}
+                                            cant={1}
                                         />
                                     ))}
+                                    
                                 </div>
                             </div>
                         </div>

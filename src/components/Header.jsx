@@ -1,7 +1,13 @@
 import { NavLink, Link } from "react-router-dom";
-
+import { useContext } from "react";
+import { cartContext } from "../context/CartContext";
+import { wishContext } from "../context/WishContext";
 
 export function Header() {
+
+    const { cartCount } = useContext(cartContext);
+    const { wishCount } = useContext(wishContext);
+
     return (
         <>
             <header>
@@ -51,8 +57,10 @@ export function Header() {
                                     <div>
                                         <a href="#">
                                             <i className="fa fa-heart-o"></i>
-                                            <span>Mis deseos</span>
-                                            <div className="qty">5</div>
+                                            <NavLink to="/misDeseos">
+                                                <span>Mis deseos</span>
+                                            </NavLink>
+                                            <div className="qty">{wishCount}</div>
                                         </a>
                                     </div>
 
@@ -62,7 +70,7 @@ export function Header() {
                                             <NavLink to="/cart">
                                                 <span>Mi Carrito</span>
                                             </NavLink>
-                                            <div className="qty">3</div>
+                                            <div className="qty">{cartCount}</div>
                                         </a>
                                     </div>
 

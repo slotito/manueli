@@ -1,12 +1,15 @@
-import { ProductCard } from "./ProductCard";
+import { useContext } from "react";
+import { ProductCard } from "../components/ProductCard";
 import enPagina_nuevos from '../datos/enPagina_nuevos.json';
 
 import { useProducts } from '../context/ProductsContext';
-
+import { cartContext } from "../context/CartContext";
 
 export function SeccionNuevosProductos() {
 
 	const productsData = useProducts();
+	const { buyProduct } = useContext(cartContext);
+
 	const productsCards  = enPagina_nuevos.map((item) => {
 		const product = productsData.products.find(product => (product.id === item.id_nuevo));
 		if (product) {
@@ -19,6 +22,7 @@ export function SeccionNuevosProductos() {
 						category={product.category}
 						discountPercentage={product.discountPercentage}
 						image={product.thumbnail}
+						buyProduct={buyProduct}
 					/>
 				)
 		}

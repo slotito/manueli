@@ -7,11 +7,14 @@ import '../estilos/Especiales.css'
 //import { useProducts } from '../context/ProductsContext_v2';
 import { ProductCard } from '../components/ProductCard';
 import { dataContext } from '../context/DataContext';
+import { cartContext } from '../context/CartContext';
 
 export function SeccionProductosNuevos() {
 
     //const productsData = useProducts();  // hook personalizado
-    const { productsData, cart, setCart } = useContext(dataContext);
+    const { productsData } = useContext(dataContext);
+    //const { cart, setCart } = useContext(cartContext);
+    const { buyProduct } = useContext(cartContext);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -41,6 +44,8 @@ export function SeccionProductosNuevos() {
                             category={product.category}
                             discountPercentage={product.discountPercentage}
                             image={product.thumbnail}
+                            buyProduct={buyProduct}
+                            cant={1}
                         />
                     </Link>
                 )

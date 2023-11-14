@@ -4,22 +4,21 @@ import axios from 'axios';
 
 import PropTypes from 'prop-types'; // Importa PropTypes
 
-
-
 export const dataContext = createContext();   // Creo el contexto
 
 const DataProvider = ({ children }) => {
-  const [productsData, setProducts] = useState([]); // estados iniciales
-  const [cart, setCart] = useState([]); // estados iniciales del carrito
+  const [productsData, setProductsData] = useState([]); // estados iniciales
+  //const [cart, setCart] = useState([]); // estados iniciales del carrito
+  //const [cartCount, setCartCount] = useState(0); // estados iniciales del carrito
 
   useEffect(() => {
     axios.get('products2.json').then((response) => {
-      setProducts(response.data);
+      setProductsData(response.data);
     })
   }, []);
 
   return (
-    <dataContext.Provider value={{productsData, cart, setCart}}>
+    <dataContext.Provider value={{productsData}}>
       {children}
     </dataContext.Provider>
   );

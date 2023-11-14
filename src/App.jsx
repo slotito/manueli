@@ -8,12 +8,13 @@ import Products from './pages/Products/Products'
 import ProductPage from './pages/Products/ProductPage'
 import Categories from './pages/Categories/Categories';
 
-//import SeccionNuevosProductos from './components/NuevosProductos';
-import SeccionNuevosProductos2 from './components/NuevosProductos2';
-
 import DataProvider from './context/DataContext';
-import { CartProvider } from './context/CartContext';
-import ProductSection from './pages/Products/ProductSection';
+import CartProvider from './context/CartContext';
+import WishProvider from "./context/WishContext";
+
+import SeccionNuevosProductos2 from './components/NuevosProductos2';
+import CartContent from "./components/Cart/CartContent";
+import WishContent from "./components/WishContent";
 
 function App() {
 
@@ -34,6 +35,7 @@ function App() {
     return (
         <DataProvider>
         <CartProvider>
+        <WishProvider>
         <BrowserRouter>
         <div>
             <Header />
@@ -46,9 +48,13 @@ function App() {
                 <Route path="/categorias/:category" element={<Products />} />
                 <Route path="/products" element={<Products />} />
                 <Route path="/products/:id" element={<ProductPage />} />
+                <Route path="/cart" element={<CartContent />} />
+                <Route path="/misDeseos" element={<WishContent />} />
+
             </Routes>
         </div>
         </BrowserRouter>
+        </WishProvider>
         </CartProvider>
         </DataProvider>
     )
