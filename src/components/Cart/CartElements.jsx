@@ -14,7 +14,7 @@ const CartElements = () => {
                     <h3>{product.id}</h3>
                     <h3>{product.title}</h3>
                     <h3>{product.price}</h3>
-                    <h3>{product.cant}</h3>
+                    <h3>{product.quanty}</h3>
                 </div>
             </div>
       </div>

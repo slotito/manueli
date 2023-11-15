@@ -8,9 +8,22 @@ const WishProvider = ({ children }) => {
   const [wishCount, setWishCount] = useState(0);
 
   const wishProduct = (product) => {
-    setWish([...wish, product]);
-    setWishCount((prevCount) => prevCount + 1);
+    const productrepeat = wish.find((item) => item.id === product.id);
+    if (productrepeat) {
+      console.log("repetido");
+      return;
+    } else {
+      setWish([...wish, product]);
+      setWishCount((prevCount) => prevCount + 1);
+    }
   };
+
+    const removeFromWish = (productId) => {
+    // Filtra los productos que no coincidan con el productId
+    const updatedWish = wish.filter((product) => product.id !== productId);
+    setWish(updatedWish);
+  };
+
 
   const value = {
     wish,
@@ -18,6 +31,7 @@ const WishProvider = ({ children }) => {
     wishCount,
     setWishCount,
     wishProduct,
+    removeFromWish
   };
 
   return <wishContext.Provider value={value}>

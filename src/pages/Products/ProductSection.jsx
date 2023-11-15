@@ -1,12 +1,20 @@
-
 import { useEffect, useState, useContext } from 'react';
-import { useProducts } from '../../context/ProductsContext_v2';
+
+import ButtonAddCart from '../../components/ButtonAddCart';
+import CartItemCounter from '../../components/Cart/CartItemCounter';
+
 import { dataContext } from '../../context/DataContext';
+import { wishContext } from '../../context/WishContext';
+import { cartContext } from '../../context/CartContext';
+import { Link } from 'react-router-dom';
 
-export function ProductSection ({id}) {
 
-    //const productsData = useProducts();
+export function ProductSection ({id, title, price, category, discountPercentage, image, quanty}) {
+
     const { productsData, cart, setCart } = useContext(dataContext);
+    const { wishProduct } = useContext(wishContext);
+    const { buyProduct } = useContext(cartContext);
+
 
     const [vproduct, setvProduct] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -130,24 +138,37 @@ export function ProductSection ({id}) {
 
                             <div className="add-to-cart">
                                 <div className="qty-label">
-                                    Qty
-                                    <div className="input-number">
+                                    Cantidad
+                                    <CartItemCounter product={vproduct} />
+{/*                                     <div className="input-number">
                                         <input type="number" />
                                         <span className="qty-up">+</span>
                                         <span className="qty-down">-</span>
-                                    </div>
+                                    </div> */}
                                 </div>
-                                <button className="add-to-cart-btn"><i className="fa fa-shopping-cart"></i> add to cart</button>
+                                <ButtonAddCart
+                                    title="al Carrito" 
+                                    onClick={()=> buyProduct({id, title, price, category, discountPercentage, image, quanty: 1})} 
+                                    key={id} 
+                                    className="fa fa-shopping-cart"
+                                />
                             </div>
 
-                            <ul className="product-btns">
-                                <li><a href="#"><i className="fa fa-heart-o"></i> add to wishlist</a></li>
-{/*                                 <li><a href="#"><i className="fa fa-exchange"></i> add to compare</a></li>
- */}                            </ul>
+                            <ButtonAddCart 
+                                    title=" Favoritos"
+                                    className="fa fa-heart-o"
+                                    onClick={()=> wishProduct({id, title, price, category, discountPercentage, image})}
+                            >
+                                <ul className="product-btns">
+                                    <li><a href="#"><i className="fa fa-heart-o"></i> Favoritos</a></li>
+                                </ul>
+                            </ButtonAddCart>
 
                             <ul className="product-links">
-                                <li>Category:</li>
-                                <li><a href="#">{vproduct.category}</a></li>
+                                <li>Category: </li>
+                                <Link to={`/categorias/${vproduct.category}`} key={vproduct.category}>
+                                    <li><a href="#">{vproduct.category}</a></li>
+                                </Link>
                             </ul>
 
 {/*                             <ul className="product-links">
@@ -164,14 +185,14 @@ export function ProductSection ({id}) {
                     <div className="col-md-12">
                         <div id="product-tab">
 
-                            <ul className="tab-nav">
+{/*                             <ul className="tab-nav">
                                 <li className="active"><a data-toggle="tab" href="#tab1">Description</a></li>
                                 <li><a data-toggle="tab" href="#tab2">Details</a></li>
                                 <li><a data-toggle="tab" href="#tab3">Reviews (3)</a></li>
-                            </ul>
+                            </ul> */}
 
                             <div className="tab-content">
-                                <div id="tab1" className="tab-pane fade in active">
+{/*                                 <div id="tab1" className="tab-pane fade in active">
                                     <div className="row">
                                         <div className="col-md-12">
                                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
@@ -185,7 +206,7 @@ export function ProductSection ({id}) {
                                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                                         </div>
                                     </div>
-                                </div>
+                                </div> */}
 
                                 {/* error en estas líneas */}
 {/*                                 <div id="tab3" className="tab-pane fade in">

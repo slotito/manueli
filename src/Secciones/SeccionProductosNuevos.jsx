@@ -31,7 +31,6 @@ export function SeccionProductosNuevos() {
     } else {
 
     const productsCards  = enPagina_nuevos.map((item) => {
-        //console.log(productsData)
         const product = productsData.find(product => (product.id === item.id_nuevo && item.home_muestra));
         if (product) {
                 return (
@@ -45,7 +44,7 @@ export function SeccionProductosNuevos() {
                             discountPercentage={product.discountPercentage}
                             image={product.thumbnail}
                             buyProduct={buyProduct}
-                            cant={1}
+                            quanty={1}
                         />
                     </Link>
                 )

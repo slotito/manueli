@@ -15,6 +15,7 @@ import WishProvider from "./context/WishContext";
 import SeccionNuevosProductos2 from './components/NuevosProductos2';
 import CartContent from "./components/Cart/CartContent";
 import WishContent from "./components/WishContent";
+import Checkout from "./pages/Checkout/Checkout";
 
 function App() {
 
@@ -48,7 +49,7 @@ function App() {
                 <Route path="/categorias/:category" element={<Products />} />
                 <Route path="/products" element={<Products />} />
                 <Route path="/products/:id" element={<ProductPage />} />
-                <Route path="/cart" element={<CartContent />} />
+                <Route path="/cart" element={<Checkout />} />
                 <Route path="/misDeseos" element={<WishContent />} />
 
             </Routes>

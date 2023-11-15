@@ -1,10 +1,12 @@
 import { useContext } from 'react'
 import ButtonAddCart from './ButtonAddCart'
 import { wishContext } from '../context/WishContext'
+import { cartContext } from '../context/CartContext'
 
-export function ProductCard({ id, title, price, category, discountPercentage, image, buyProduct}) {
+export function ProductCard({ id, title, price, category, discountPercentage, image}) {
 
     const { wishProduct } = useContext(wishContext);
+    const { buyProduct } = useContext(cartContext);
 
     return (
 
@@ -43,7 +45,7 @@ export function ProductCard({ id, title, price, category, discountPercentage, im
         <div className="add-to-cart">
             <ButtonAddCart 
                 title="al Carrito" 
-                onClick={()=> buyProduct({id, title, price, category, discountPercentage, image, cant: 1})} 
+                onClick={()=> buyProduct({id, title, price, category, discountPercentage, image, quanty: 1})} 
                 key={id} 
                 className="fa fa-shopping-cart"
             />  {/* onAdd(count) */}

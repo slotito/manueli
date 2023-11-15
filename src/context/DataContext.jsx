@@ -24,6 +24,10 @@ const DataProvider = ({ children }) => {
   );
 }
 
+
+
+
+
 export default DataProvider // Exporta el contexto
 
 

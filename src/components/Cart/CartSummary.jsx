@@ -4,7 +4,7 @@ import { cartContext } from "../../context/CartContext"
 const CartSummary = () => {
 
     const { cart } = useContext(cartContext);
-    const total = cart.reduce((acc, product) => acc + (product.price * product.cant), 0);
+    const total = cart.reduce((acc, product) => acc + (product.price * product.quanty), 0);
 
   return (
     <div>
@@ -13,4 +13,4 @@ const CartSummary = () => {
   )
 }
 
-export default CartSummary
+export default CartSummary;

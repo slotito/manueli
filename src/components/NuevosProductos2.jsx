@@ -42,7 +42,7 @@ export function SeccionNuevosProductos2({xDefecto}) {
 						discountPercentage={product.discountPercentage}
 						image={product.thumbnail}
 						buyProduct={buyProduct}
-						cant={1}
+						quanty={1}
 					/>
 				)
 		}

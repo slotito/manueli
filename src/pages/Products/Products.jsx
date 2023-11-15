@@ -1,6 +1,7 @@
 //import './Products.css';
 import { useParams } from 'react-router-dom';
 import { useContext } from 'react';
+import { Link } from 'react-router-dom';
 
 import { ProductCard } from '../../components/ProductCard';
 import { dataContext } from '../../context/DataContext';
@@ -42,6 +43,8 @@ const Products = () => {
                             <div className="container">
                                 <div className="row">
                                         {filteredProducts.map(product => (
+                                        <Link to={`/products/${product.id}`} key={product.id}>
+
                                         <ProductCard
                                             key={product.id}
                                             id={product.id}
@@ -51,8 +54,9 @@ const Products = () => {
                                             discountPercentage={product.discountPercentage}
                                             image={product.thumbnail}
                                             buyProduct={buyProduct}
-                                            cant={1}
+                                            quanty={1}
                                         />
+                                        </Link>
                                     ))}
                                     
                                 </div>
