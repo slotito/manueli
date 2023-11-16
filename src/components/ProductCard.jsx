@@ -3,7 +3,7 @@ import ButtonAddCart from './ButtonAddCart'
 import { wishContext } from '../context/WishContext'
 import { cartContext } from '../context/CartContext'
 
-export function ProductCard({ id, title, price, category, discountPercentage, image}) {
+export function ProductCard({ product }) {
 
     const { wishProduct } = useContext(wishContext);
     const { buyProduct } = useContext(cartContext);
@@ -14,39 +14,34 @@ export function ProductCard({ id, title, price, category, discountPercentage, im
     <div className="product">
         <div className="product-img">
  
-            <img src={image} alt="" />
- 
+            <img src={product.thumbnail} alt="" />
             <div className="product-label">
-                <span className="sale">-{discountPercentage}%</span>
+                <span className="sale">-{product.discountPercentage}%</span>
                 <span className="new">NUEVO</span>
             </div>
                 
         </div>
 
         <div className="product-body">
-            <p className="product-category">{category}</p>
-            <h3 className="product-name"><a href="#">{title}</a></h3>
-            <h4 className="product-price">$ {price} <del className="product-old-price">${(price / (1-discountPercentage/100)).toFixed(0 )}</del></h4>
+            <p className="product-category">{product.category}</p>
+            <h3 className="product-name"><a href="#">{product.title}</a></h3>
+            <h4 className="product-price">$ {product.price} <del className="product-old-price">${(product.price / (1-product.discountPercentage/100)).toFixed(0 )}</del></h4>
             <div className="product-btns">
-            <ButtonAddCart 
-                className="fa fa-heart-o"
-                onClick={()=> wishProduct({id, title, price, category, discountPercentage, image})}
-                >
-                    <button className="add-to-wishlist">
-                        <i className="fa fa-heart-o"></i>
-                        <span className="tooltipp">lo quiero</span>
-                    </button>
-            </ButtonAddCart>
-{/*                <button className="add-to-wishlist"><i className="fa fa-heart-o"></i><span className="tooltipp">lo quiero</span></button>               
- */}  {/*               <button className="add-to-compare"><i className="fa fa-exchange"></i><span className="tooltipp">add to compare</span></button> */}
-               {/*  <button className="quick-view"><i className="fa fa-eye"></i><span className="tooltipp">quick view</span></button> */}
+                <ButtonAddCart 
+                    className="fa fa-heart-o"
+                    onClick={()=> wishProduct({product})}
+                    >
+                        <button className="add-to-wishlist">
+                            <i className="fa fa-heart-o"></i>
+                            <span className="tooltipp">lo quiero</span>
+                        </button>
+                </ButtonAddCart>
             </div>
         </div>
         <div className="add-to-cart">
-            <ButtonAddCart 
+            <ButtonAddCart key={product.id} 
                 title="al Carrito" 
-                onClick={()=> buyProduct({id, title, price, category, discountPercentage, image, quanty: 1})} 
-                key={id} 
+                onClick={()=> buyProduct({product, quanty: 1})} 
                 className="fa fa-shopping-cart"
             />  {/* onAdd(count) */}
         </div>

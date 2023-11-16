@@ -1,4 +1,4 @@
-import { createContext, useContext } from 'react';
+import { createContext } from 'react';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -7,26 +7,42 @@ import PropTypes from 'prop-types'; // Importa PropTypes
 export const dataContext = createContext();   // Creo el contexto
 
 const DataProvider = ({ children }) => {
-  const [productsData, setProductsData] = useState([]); // estados iniciales
-  //const [cart, setCart] = useState([]); // estados iniciales del carrito
-  //const [cartCount, setCartCount] = useState(0); // estados iniciales del carrito
+
+  const [products, setProducts] = useState([]); // estados iniciales
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    axios.get('products2.json').then((response) => {
-      setProductsData(response.data);
-    })
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('products2.json');
+        setProducts(response.data);
+      } catch (error) {
+        console.error('Error fetching product data:', error);
+        setError('Error al cargar los productos');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+
   }, []);
 
+  if (loading) {
+    return <div>Cargando productos...</div>;
+  }
+
+  if (error) {
+    return <div>{error}</div>;
+  }
+  
   return (
-    <dataContext.Provider value={{productsData}}>
+    <dataContext.Provider value={{products}}>
       {children}
     </dataContext.Provider>
   );
 }
-
-
-
-
 
 export default DataProvider // Exporta el contexto
 

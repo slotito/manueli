@@ -5,46 +5,36 @@ import enPagina_nuevos from '../datos/enPagina_nuevos.json';  // para destacar l
 import '../estilos/Especiales.css'
 
 //import { useProducts } from '../context/ProductsContext_v2';
+import { cartContext } from '../context/CartContext';
 import { ProductCard } from '../components/ProductCard';
 import { dataContext } from '../context/DataContext';
-import { cartContext } from '../context/CartContext';
 
 export function SeccionProductosNuevos() {
 
     //const productsData = useProducts();  // hook personalizado
-    const { productsData } = useContext(dataContext);
-    //const { cart, setCart } = useContext(cartContext);
+    const { products } = useContext(dataContext);
     const { buyProduct } = useContext(cartContext);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-                if (productsData && productsData.length > 0) {
+                if (products && products.length > 0) {
                     setLoading(false);
                 } else {
                     setLoading(true);
                 }
-    }, [productsData]);
+    }, [products]);
 
     if (loading) {
-        //console.log(productsData)
         return <div>Cargando...</div>;
     } else {
 
     const productsCards  = enPagina_nuevos.map((item) => {
-        const product = productsData.find(product => (product.id === item.id_nuevo && item.home_muestra));
+        const product = products.find(product => (product.id === item.id_nuevo && item.home_muestra));
         if (product) {
                 return (
                     <Link to={`/products/${product.id}`} key={product.id}>
                         <ProductCard
-                            key={product.id}
-                            id={product.id}
-                            title={product.title}
-                            price={product.price}
-                            category={product.category}
-                            discountPercentage={product.discountPercentage}
-                            image={product.thumbnail}
-                            buyProduct={buyProduct}
-                            quanty={1}
+                            product={product}
                         />
                     </Link>
                 )

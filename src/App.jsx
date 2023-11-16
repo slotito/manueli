@@ -51,7 +51,6 @@ function App() {
                 <Route path="/products/:id" element={<ProductPage />} />
                 <Route path="/cart" element={<Checkout />} />
                 <Route path="/misDeseos" element={<WishContent />} />
-
             </Routes>
         </div>
         </BrowserRouter>

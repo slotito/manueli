@@ -55,7 +55,7 @@ const WishContent = () => {
                             
                                     <div key={product.id} className="product-widget">
                                     <div className="product-img">
-                                        <img src={product.image} alt="" />
+                                        <img src={product.thumbnail} alt="" />
                                     </div>
                                     <div className="product-body">
                                         <h3 className="product-name"><a href="#">{product.title}</a></h3>

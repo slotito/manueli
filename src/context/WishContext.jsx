@@ -8,19 +8,19 @@ const WishProvider = ({ children }) => {
   const [wishCount, setWishCount] = useState(0);
 
   const wishProduct = (product) => {
-    const productrepeat = wish.find((item) => item.id === product.id);
+    const productrepeat = wish.find((item) => item.id === product[0].id);
     if (productrepeat) {
       console.log("repetido");
       return;
     } else {
-      setWish([...wish, product]);
+      setWish([...wish, product[0]]);
       setWishCount((prevCount) => prevCount + 1);
     }
   };
 
     const removeFromWish = (productId) => {
     // Filtra los productos que no coincidan con el productId
-    const updatedWish = wish.filter((product) => product.id !== productId);
+    const updatedWish = wish.filter((product) => product.id !== productId[0]);
     setWish(updatedWish);
   };
 

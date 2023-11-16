@@ -25,7 +25,6 @@ const CartItemCounter = ({ product }) => {
           setQuanty((prevQuanty) => prevQuanty - 1);
         }
       };
-
   return (
 
     <>

@@ -6,7 +6,11 @@ import { cartContext } from "../../context/CartContext"
 
 const Checkout = () => {
 
-    const { cart, removeFromCart } = useContext(cartContext);
+    const { cart, removeFromCart, handleClearCart  } = useContext(cartContext);
+
+    useEffect(() => {
+        
+	}, [cart])
 
     const total = cart.reduce((acc, product) => acc + (product.price * product.quanty), 0);
     const totalItems = cart.reduce((acc, product) => acc + product.quanty, 0);
@@ -15,9 +19,11 @@ const Checkout = () => {
       removeFromCart(productId);
     };
 
-    useEffect(() => {
-        
-      }, [cart])
+	const handleCheckout = () => {
+		console.log('Finalizó la compra, agradecer al usuario por su compra y limpiar el carrito');
+		handleClearCart();
+	};
+
     
 
   return (
@@ -130,76 +136,30 @@ const Checkout = () => {
 						<div className="order-summary">
 							<div className="order-col">
 								<div><strong>Producto</strong></div>
-								<div><strong>TOTAL</strong></div>
 							</div>
-
-			
 						</div>
 
-
                         {cart.map((product) => (
-                            
-                                    <div key={product.id} className="product-widget">
+                                <div key={product.id} className="product-widget">
                                     <div className="product-img">
-                                        <img src={product.image} alt="" />
+                                        <img src={product.thumbnail} alt="" />
                                     </div>
-                                    <div className="product-body">
-                                        <h3 className="product-name"><a href="#">{product.title}</a></h3>
-                                        <h4 className="product-price"><span className="qty">{product.quanty}</span>{product.price * product.quanty}</h4>
-                                    </div>
+                                <div className="product-body">
+									<Link to={`/products/${product.id}`}>
+                                    <h3 className="product-name"><a href="#">Cod.: {product.id} - {product.title}</a></h3>
+									</Link>
+                                    <h4 className="product-price"><span className="qty">Cant: {product.quanty}</span> x $ {product.price} = $ {product.price * product.quanty}</h4>
+                                </div>
                                     <button onClick={() => handleRemove(product.id)} className="delete"><i className="fa fa-close"></i></button>
                                 </div>
                                 ))}
 
-                                        <div className="cart-summary">
-											<small>{totalItems} Item(s) seleccionados</small>
-											<h5>TOTAL $: {total}</h5>
-										</div>
-
-
-
-{/* 						<div className="payment-method">
-							<div className="input-radio">
-								<input type="radio" name="payment" id="payment-1" />
-								<label for="payment-1">
-									<span></span>
-									Direct Bank Transfer
-								</label>
-								<div className="caption">
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                <div className="cart-summary">
+									<small>{totalItems} Item(s) seleccionados</small>
+									<h5>TOTAL $: {total}</h5>
 								</div>
-							</div>
-							<div className="input-radio">
-								<input type="radio" name="payment" id="payment-2" />
-								<label for="payment-2">
-									<span></span>
-									Cheque Payment
-								</label>
-								<div className="caption">
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-								</div>
-							</div>
-							<div className="input-radio">
-								<input type="radio" name="payment" id="payment-3" />
-								<label for="payment-3">
-									<span></span>
-									Paypal System
-								</label>
-								<div className="caption">
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-								</div>
-							</div>
-						</div>
-
-						<div className="input-checkbox">
-							<input type="checkbox" id="terms" />
-							<label for="terms">
-								<span></span>
-								I've read and accept the <a href="#">terms & conditions</a>
-							</label>
-						</div>
-  */}                       
-						<a href="#" className="primary-btn order-submit">Finalizar Orden</a>
+							
+						<a href="#" className="primary-btn order-submit" onClick={handleCheckout}>Finalizar Orden</a>
 					</div>
 				</div>
 			</div>

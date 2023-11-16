@@ -10,7 +10,7 @@ import { cartContext } from '../../context/CartContext';
 
 const Products = () => {
 
-    const { productsData } = useContext(dataContext);
+    const { products } = useContext(dataContext);
     //const { cart, setCart } = useContext(cartContext);
     //const { cartCount, setCartCount } = useContext(cartContext);
     const { buyProduct } = useContext(cartContext);
@@ -24,9 +24,9 @@ const Products = () => {
 
     let filteredProducts;
     if (!category) {
-        filteredProducts = productsData;
+        filteredProducts = products;
     } else {
-        filteredProducts = productsData.filter(product => product.category === category);
+        filteredProducts = products.filter(product => product.category === category);
     }
       
     return (
@@ -46,13 +46,7 @@ const Products = () => {
                                         <Link to={`/products/${product.id}`} key={product.id}>
 
                                         <ProductCard
-                                            key={product.id}
-                                            id={product.id}
-                                            title={product.title}
-                                            price={product.price}
-                                            category={product.category}
-                                            discountPercentage={product.discountPercentage}
-                                            image={product.thumbnail}
+                                            product={product}
                                             buyProduct={buyProduct}
                                             quanty={1}
                                         />
