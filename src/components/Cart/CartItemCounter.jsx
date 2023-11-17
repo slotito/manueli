@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { cartContext } from '../../context/CartContext'
 
 
-const CartItemCounter = ({ product }) => {
+const CartItemCounter = ({ product, onValueChange }) => {
 
     const { buyProduct } = useContext(cartContext);
     const [quanty, setQuanty] = useState(1);
@@ -12,19 +12,24 @@ const CartItemCounter = ({ product }) => {
         if (product.quanty) {
           setQuanty(product.quanty);
         }
-      }, [product.quanty]);
+    }, [product.quanty]);
+
+    useEffect(() => {  // Llama a la función proporcionada cuando cambia la cantidad
+      onValueChange(quanty);
+    }, [quanty, onValueChange]);
     
-      const handleIncrement = () => {
-        buyProduct({ ...product, quanty: quanty + 1 });
+    const handleIncrement = () => {
+        buyProduct({ ...product, quanty: quanty + 1 }, false);
         setQuanty((prevQuanty) => prevQuanty + 1);
-      };
+    };
     
-      const handleDecrement = () => {
+    const handleDecrement = () => {
         if (quanty > 1) {
-          buyProduct({ ...product, quanty: quanty - 1 });
+          buyProduct({ ...product, quanty: quanty - 1 }, false);
           setQuanty((prevQuanty) => prevQuanty - 1);
         }
-      };
+    };
+    
   return (
 
     <>

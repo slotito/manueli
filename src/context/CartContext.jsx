@@ -1,6 +1,5 @@
 import { createContext, useState, useEffect } from "react";
 import PropTypes from 'prop-types';
-
 import { useLocalStorage } from '../components/Cart/useLocalStorage'
 
 export const cartContext = createContext();
@@ -11,17 +10,11 @@ const CartProvider = ({ children }) => {
   const [cartCount, setCartCount] = useState(0);
   
   useEffect(() => {
-    const initialCartCount = cart.reduce((acc, product) => acc + 1, 0); // product.stock
-    setCartCount(initialCartCount);
-
-    const newCartCount = cart.reduce((acc, product) => {
-      return acc + 1;
-    }, 0);
-    setCartCount(newCartCount);
-    console.log('El estado del carrito ha cambiado:', cart);
+    setCartCount(cart.length);
   }, [cart]);
 
-  const buyProduct = (product, vquanty) => {
+  const buyProduct = (product, vquanty, execute) => {
+    if (execute) {
     vquanty = vquanty ?? 1;
 
     if (!cart || cart.length === 0) {
@@ -46,6 +39,7 @@ const CartProvider = ({ children }) => {
             setCartCount((prevCount) => prevCount + 1);
         } 
     }
+  }
   };
 
   const removeFromCart = (productId) => {

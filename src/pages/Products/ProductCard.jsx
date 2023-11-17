@@ -1,13 +1,13 @@
 import { useContext } from 'react'
-import ButtonAddCart from './ButtonAddCart'
-import { wishContext } from '../context/WishContext'
-import { cartContext } from '../context/CartContext'
+import ButtonAddCart from '../../components/ButtonAddCart'
+import { wishContext } from '../../context/WishContext'
+import { cartContext } from '../../context/CartContext'
 
 export function ProductCard({ product }) {
 
     const { wishProduct } = useContext(wishContext);
     const { buyProduct } = useContext(cartContext);
-
+    //console.log("el productT", product);
     return (
 
      
@@ -29,7 +29,7 @@ export function ProductCard({ product }) {
             <div className="product-btns">
                 <ButtonAddCart 
                     className="fa fa-heart-o"
-                    onClick={()=> wishProduct({product})}
+                    onClick={()=> wishProduct([product])}
                     >
                         <button className="add-to-wishlist">
                             <i className="fa fa-heart-o"></i>
@@ -41,9 +41,9 @@ export function ProductCard({ product }) {
         <div className="add-to-cart">
             <ButtonAddCart key={product.id} 
                 title="al Carrito" 
-                onClick={()=> buyProduct({product, quanty: 1})} 
+                onClick={()=> buyProduct([product], 1, true)} 
                 className="fa fa-shopping-cart"
-            />  {/* onAdd(count) */}
+            />
         </div>
     </div>
 

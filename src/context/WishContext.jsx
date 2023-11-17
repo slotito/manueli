@@ -1,30 +1,40 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 import PropTypes from 'prop-types';
+import { useLocalStorage } from '../components/Cart/useLocalStorage'
 
 export const wishContext = createContext();
 
 const WishProvider = ({ children }) => {
-  const [wish, setWish] = useState([]);
+
+  const [wish, setWish] = useLocalStorage('wish', []);
   const [wishCount, setWishCount] = useState(0);
 
-  const wishProduct = (product) => {
-    const productrepeat = wish.find((item) => item.id === product[0].id);
-    if (productrepeat) {
-      console.log("repetido");
-      return;
-    } else {
-      setWish([...wish, product[0]]);
-      setWishCount((prevCount) => prevCount + 1);
-    }
-  };
+  useEffect(() => {
+    setWishCount(wish.length);
+  }, [wish]);
 
-    const removeFromWish = (productId) => {
-    // Filtra los productos que no coincidan con el productId
-    const updatedWish = wish.filter((product) => product.id !== productId[0]);
+  const wishProduct = (product) => {
+      if (!wish || wish.length === 0) {
+        console.log("no hay wish");
+        setWish([product[0]]);
+      } else {    
+        const productrepeat = wish.find((item) => item.id === product[0].id);
+        if (productrepeat) {
+          console.log("repetido");
+          return;
+        } else {
+          console.log("no repetido");
+          setWish((prevWish) => [...prevWish, product[0]]);
+        }
+      } 
+  }
+
+  const removeFromWish = (productId) => {
+    const updatedWish = wish.filter((product) => product.id !== productId[0]); // filtra los que coinciden
     setWish(updatedWish);
   };
 
-
+  
   const value = {
     wish,
     setWish,

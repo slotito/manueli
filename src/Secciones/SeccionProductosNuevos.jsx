@@ -4,17 +4,19 @@ import { useState , useContext, useEffect} from 'react';
 import enPagina_nuevos from '../datos/enPagina_nuevos.json';  // para destacar los nuevos
 import '../estilos/Especiales.css'
 
-//import { useProducts } from '../context/ProductsContext_v2';
-import { cartContext } from '../context/CartContext';
-import { ProductCard } from '../components/ProductCard';
+import { ProductCard } from '../pages/Products/ProductCard';
+
 import { dataContext } from '../context/DataContext';
+import { cartContext } from '../context/CartContext';
+import { wishContext } from '../context/WishContext';
 
 export function SeccionProductosNuevos() {
 
-    //const productsData = useProducts();  // hook personalizado
     const { products } = useContext(dataContext);
-    const { buyProduct } = useContext(cartContext);
     const [loading, setLoading] = useState(true);
+
+    const { buyProduct } = useContext(cartContext);
+    const { wishProduct } = useContext(wishContext);
 
     useEffect(() => {
                 if (products && products.length > 0) {
@@ -30,11 +32,14 @@ export function SeccionProductosNuevos() {
 
     const productsCards  = enPagina_nuevos.map((item) => {
         const product = products.find(product => (product.id === item.id_nuevo && item.home_muestra));
+        //console.log("el product", product);
         if (product) {
                 return (
                     <Link to={`/products/${product.id}`} key={product.id}>
                         <ProductCard
                             product={product}
+/*                             buyProduct={buyProduct}
+                            wishProduct={wishProduct} */
                         />
                     </Link>
                 )

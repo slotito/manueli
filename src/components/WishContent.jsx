@@ -6,13 +6,13 @@ import {wishContext} from "../context/WishContext"
 
 const WishContent = () => {
 
-    const { wish, removeFromWish } = useContext(wishContext);
+    const { wish, setWish } = useContext(wishContext);
 
-    const handleRemove = (productId) => {
-      removeFromWish(productId);
+    const handleRemove = (wishId) => {
+		const updatedWish = wish.filter((item) => item.id !== parseInt(wishId));
+		setWish(updatedWish);
     };
-
-
+	
   return (
     <>
 		<div id="breadcrumb" className="section">
@@ -35,21 +35,15 @@ const WishContent = () => {
 		<div className="section">
 			<div className="container">
 				<div className="row">
-
-
-					<div className="col-md-5 order-details">
+					<div className="col-md-5 order-details" key={wish.id}>
 						<div className="section-title text-center">
 							<h3 className="title">Los quiero ...</h3>
 						</div>
 						<div className="order-summary">
 							<div className="order-col">
 								<div><strong>Producto</strong></div>
-
 							</div>
-
-			
 						</div>
-
 
                         {wish.map((product) => (
                             
@@ -58,7 +52,9 @@ const WishContent = () => {
                                         <img src={product.thumbnail} alt="" />
                                     </div>
                                     <div className="product-body">
-                                        <h3 className="product-name"><a href="#">{product.title}</a></h3>
+										<Link to={`/products/${product.id}`}>
+                                        <h3 className="product-name"><a href="#">{product.title} - cod({product.id})</a></h3>
+										</Link>
                                     </div>
                                     <button onClick={() => handleRemove(product.id)} className="delete"><i className="fa fa-close"></i></button>
                                 </div>

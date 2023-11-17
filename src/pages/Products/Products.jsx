@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
-import { ProductCard } from '../../components/ProductCard';
+import { ProductCard } from './ProductCard';
 import { dataContext } from '../../context/DataContext';
 import { cartContext } from '../../context/CartContext';
 

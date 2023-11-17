@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { ProductCard } from "./ProductCard";
+import { ProductCard } from "../pages/Products/ProductCard";
 import environments from "../datos/environments.js";
 import enPagina_nuevos from '../datos/enPagina_nuevos.json';
 
@@ -34,16 +34,12 @@ export function SeccionNuevosProductos2({xDefecto}) {
 		const product = products.find(product => ((product.id === item.id_nuevo && product.category === selectedCategory) || (product.id === item.id_nuevo && selectedCategory === "all")));
 		if (product) {
 				return (
-					<ProductCard
-						key={product.id}
-						title={product.title}
-						price={product.price}
-						category={product.category}
-						discountPercentage={product.discountPercentage}
-						image={product.thumbnail}
-						buyProduct={buyProduct}
-						quanty={1}
-					/>
+					<NavLink to={`/products/${product.id}`} key={product.id}>
+						<ProductCard key={product.id}
+							product={product}
+							buyProduct={buyProduct}
+						/>
+					</NavLink>
 				)
 		}
 	});

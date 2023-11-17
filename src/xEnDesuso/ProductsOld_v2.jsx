@@ -1,5 +1,5 @@
 import '../estilos/Products.css'
-import { AddToCartIcon } from './Icons.jsx'
+import { AddToCartIcon } from '../components/Icons.jsx'
 import PropTypes from 'prop-types'  // tengo que traerlo porque ESLint me pide que valide los tipos de datos ('products' es un array de objetos)
 
 export function Products({ products }) {

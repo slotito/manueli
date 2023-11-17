@@ -19,6 +19,8 @@ export function ProductSection ({id}) {
     const [vproduct, setvProduct] = useState(null);
     const [loading, setLoading] = useState(true);
 
+    const [quantyTMP, setQuantyTMP] = useState(1);
+
     useEffect(() => {
         const fetchdata = async () => {
             try {
@@ -37,15 +39,13 @@ export function ProductSection ({id}) {
                 setLoading(false);
             }
         };
-
         fetchdata();
-
- /*        const fetchDataAsync = async () => {
-            await fetchdata(); // Espera la ejecución de fetchData antes de continuar
-        };
-        fetchDataAsync(); */
-
     }, [products, id]);
+
+    const handleQuantityChange = (newQuanty) => {
+        // Actualiza el estado quantyTMP cada vez que cambia la cantidad en CartItemCounter
+        setQuantyTMP(newQuanty);
+      };
 
     if (loading) {
         return <div>Cargando... </div>;
@@ -101,17 +101,16 @@ export function ProductSection ({id}) {
                             <div className="add-to-cart">
                                 <div className="qty-label">
                                     Cantidad
-                                    <CartItemCounter product={[vproduct]} />
+                                    <CartItemCounter product={[vproduct]} onValueChange={handleQuantityChange} />
                                 </div>
-                                <ButtonAddCart
+                                <ButtonAddCart key={vproduct.id}
                                     title="al Carrito" 
-                                    onClick={()=> buyProduct([vproduct])} 
-                                    key={id} 
+                                    onClick={()=> buyProduct([vproduct] , quantyTMP, true)} 
                                     className="fa fa-shopping-cart"
                                 />
                             </div>
 
-                            <ButtonAddCart 
+                            <ButtonAddCart key={vproduct.id}
                                     title=" Favoritos"
                                     className="fa fa-heart-o"
                                     onClick={()=> wishProduct([vproduct])}

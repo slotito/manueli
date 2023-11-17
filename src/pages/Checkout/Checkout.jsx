@@ -144,12 +144,12 @@ const Checkout = () => {
                                     <div className="product-img">
                                         <img src={product.thumbnail} alt="" />
                                     </div>
-                                <div className="product-body">
-									<Link to={`/products/${product.id}`}>
-                                    <h3 className="product-name"><a href="#">Cod.: {product.id} - {product.title}</a></h3>
-									</Link>
-                                    <h4 className="product-price"><span className="qty">Cant: {product.quanty}</span> x $ {product.price} = $ {product.price * product.quanty}</h4>
-                                </div>
+									<div className="product-body">
+										<Link to={`/products/${product.id}`}>
+											<h3 className="product-name"><a href="#">Cod.: {product.id} - {product.title}</a></h3>
+										</Link>
+										<h4 className="product-price"><span className="qty">Cant: {product.quanty}</span> x $ {product.price} = $ {product.price * product.quanty}</h4>
+									</div>
                                     <button onClick={() => handleRemove(product.id)} className="delete"><i className="fa fa-close"></i></button>
                                 </div>
                                 ))}
