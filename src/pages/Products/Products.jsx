@@ -7,10 +7,17 @@ import { ProductCard } from './ProductCard';
 import { dataContext } from '../../context/DataContext';
 import { cartContext } from '../../context/CartContext';
 
+import { useLocation } from 'react-router-dom';
 
 const Products = () => {
 
     const { products } = useContext(dataContext);
+
+    //console.log(location);
+    const location = useLocation();
+    const results = location.state ? location.state.results : products;
+    //products = results
+
     //const { cart, setCart } = useContext(cartContext);
     //const { cartCount, setCartCount } = useContext(cartContext);
     const { buyProduct } = useContext(cartContext);
@@ -24,9 +31,9 @@ const Products = () => {
 
     let filteredProducts;
     if (!category) {
-        filteredProducts = products;
+        filteredProducts = results;
     } else {
-        filteredProducts = products.filter(product => product.category === category);
+        filteredProducts = results.filter(product => product.category === category);
     }
       
     return (

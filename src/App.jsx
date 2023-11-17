@@ -47,7 +47,7 @@ function App() {
                 <Route path=":category" element={<Products />}/>
                 <Route path="/categorias" element={<Categories />} />
                 <Route path="/categorias/:category" element={<Products />} />
-                <Route path="/products" element={<Products />} />
+                <Route path="/products" element={<Products location={location}/>} />
                 <Route path="/products/:id" element={<ProductPage />} />
                 <Route path="/cart" element={<Checkout />} />
                 <Route path="/misDeseos" element={<WishContent />} />

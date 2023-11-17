@@ -1,4 +1,4 @@
-import { Filters } from './Filters.jsx'
+import { Filters } from './Filters_old.jsx'
 import PropTypes from 'prop-types'
 
 export function HeaderOld({ changeFilters}) {

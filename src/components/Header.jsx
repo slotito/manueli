@@ -1,12 +1,40 @@
-import { NavLink, Link } from "react-router-dom";
-import { useContext } from "react";
+import { NavLink} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useContext, useState } from "react";
+
 import { cartContext } from "../context/CartContext";
 import { wishContext } from "../context/WishContext";
+import { dataContext } from "../context/DataContext";
 
 export function Header() {
 
     const { cartCount } = useContext(cartContext);
     const { wishCount } = useContext(wishContext);
+
+    const { products } = useContext(dataContext);
+
+    const uniqueCategories = [...new Set(products.map((item) => item.category))];
+
+    const [textoBuscado, setTextoBuscado] = useState("");
+
+
+
+    const navigate = useNavigate();
+
+    const handleSearch = (e) => {
+        e.preventDefault();
+        const results = products.filter((product) => {
+            return (
+                product.title.toLowerCase().includes(textoBuscado.toLowerCase()) ||
+                product.description.toLowerCase().includes(textoBuscado.toLowerCase())
+            )
+        })
+        //console.log(results);
+
+        if (results.length > 0) {
+            navigate("/products", { state: { results } });
+        }
+    }
 
     return (
         <>
@@ -40,14 +68,25 @@ export function Header() {
 
                             <div className="col-md-6">
                                 <div className="header-search">
-                                    <form>
+                                    <form onSubmit={handleSearch}>
                                         <select className="input-select">
-                                            <option value="0">Categoría</option>
-                                            <option value="1">Category 01</option>
-                                            <option value="1">Category 02</option>
+                                            <option value="0">Todas</option>
+                                            {uniqueCategories.map((category, index) => (
+                                                <option key={index + 1} value={index + 1}>{category}</option>
+                                            ))}
                                         </select>
-                                        <input className="input" placeholder="Busque acá" />
-                                        <button className="search-btn">Buscar</button>
+                                        <input
+                                            className="input"
+                                            placeholder="Busque acá"
+                                            value={textoBuscado}
+                                            onChange={(e) => setTextoBuscado(e.target.value)} 
+                                        />
+                                        <button 
+                                            className="search-btn"
+                                            type="submit    "
+                                        >
+                                            Buscar
+                                        </button>
                                     </form>
                                 </div>
                             </div>
@@ -81,6 +120,8 @@ export function Header() {
                     </div>
                 </div>
             </header>
+
+  
         </>
     );
 }
