@@ -32,16 +32,14 @@ export function ProductCard({ product }) {
 
         <div className="product-body">
             <p className="product-category">{product.category}</p>
-            <h3 className="product-name"><a href="#">{product.title}</a></h3>
+            <h3 className="product-name"><a href="#">{product.title} - Cod: {product.id}</a></h3>
             <h4 className="product-price">$ {product.price} <del className="product-old-price">${(product.price / (1-product.discountPercentage/100)).toFixed(0 )}</del></h4>
-{/*             <div className="product-btns">
- */}                <ButtonAddCart key={product.id}
+                <ButtonAddCart key={product.id}
                     classNameButton="add-to-wishlist"
                     classNameHeart={wishIds.includes(product.id) ? "fa fa-heart" : "fa fa-heart-o"}
                     onClick={()=> wishProduct([product])}
                 />
-{/*             </div>
- */}        </div>
+       </div>
         <div className="add-to-cart">
             <ButtonAddCart key={product.id} 
                 title="al Carrito" 

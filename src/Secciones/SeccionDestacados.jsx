@@ -1,14 +1,32 @@
-
-import SeccionDestacadosSec from './SeccionDestacadosSec';
-import destacadosData from '../datos/enPagina_destacados.json';
-
 import '../estilos/Especiales.css'
+import { useEffect, useState } from 'react';
+import SeccionDestacadosSec from './SeccionDestacadosSec';
 
+//import destacadosData from '../datos/enPagina_destacados.json';
+import { getItems } from "../utils/firestore";
 
 export function SeccionDestacados() {
 
 	//const dataMongo = queryCollection();
 	//console.log(dataMongo);
+
+    const [destacadosData, setDestacadosData] = useState([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const data = await getItems('enPagina_destacados');
+                setDestacadosData(data);
+            } catch (error) {
+                console.error('Error fetching destacadosData:', error);
+            }
+        };
+
+        fetchData();
+    }, []);
+
+
+
 
 	const destacadosComponentsSec  = destacadosData.map((item) => (
 		<SeccionDestacadosSec

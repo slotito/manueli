@@ -1,22 +1,37 @@
 import { Link } from 'react-router-dom';
 
 import { useState , useContext, useEffect} from 'react';
-import enPagina_nuevos from '../datos/enPagina_nuevos.json';  // para destacar los nuevos
 import '../estilos/Especiales.css'
 
 import { ProductCard } from '../pages/Products/ProductCard';
 
 import { dataContext } from '../context/DataContext';
-//import { cartContext } from '../context/CartContext';
-//import { wishContext } from '../context/WishContext';
+
+//import enPagina_nuevos from '../datos/enPagina_nuevos.json';  // para destacar los nuevos
+import { getItems } from "../utils/firestore";
 
 export function SeccionProductosNuevos() {
 
     const { products } = useContext(dataContext);
     const [loading, setLoading] = useState(true);
 
-    //const { buyProduct } = useContext(cartContext);
-    //const { wishProduct } = useContext(wishContext);
+    const [enPagina_nuevos, setenPagina_nuevos] = useState([]);
+
+        useEffect(() => {
+            const fetchData = async () => {
+                try {
+                    const data = await getItems('enPagina_Nuevos');
+                    setenPagina_nuevos(data);
+                } catch (error) {
+                    console.error('Error fetching nuevos:', error);
+                }
+            };
+
+            fetchData();
+        }, []);
+
+
+
 
     useEffect(() => {
                 if (products && products.length > 0) {

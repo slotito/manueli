@@ -69,19 +69,19 @@ export function Header() {
                             <div className="col-md-6">
                                 <div className="header-search">
                                     <form onSubmit={handleSearch}>
-                                        <select className="input-select">
+                                        <select className="input-select" style={{"width": "120px"}}>
                                             <option value="0">Todas</option>
                                             {uniqueCategories.map((category, index) => (
                                                 <option key={index + 1} value={index + 1}>{category}</option>
                                             ))}
                                         </select>
-                                        <input
+                                        <input style={{"width": "300px"}}
                                             className="input"
                                             placeholder="Digite el texto y presione Buscar"
                                             value={textoBuscado}
                                             onChange={(e) => setTextoBuscado(e.target.value)} 
                                         />
-                                        <button style={{"Width": "95px"}}
+                                        <button style={{"width": "80px"}}
                                             className="search-btn"
                                             type="submit"
                                         >
