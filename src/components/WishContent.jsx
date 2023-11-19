@@ -8,11 +8,13 @@ const WishContent = () => {
 
     const { wish, setWish } = useContext(wishContext);
 
-    const handleRemove = (wishId) => {
+	const { removeFromWish } = useContext(wishContext);
+
+/*     const handleRemove = (wishId) => {
 		const updatedWish = wish.filter((item) => item.id !== parseInt(wishId));
 		setWish(updatedWish);
     };
-	
+ */	
   return (
     <>
 		<div id="breadcrumb" className="section">
@@ -56,7 +58,7 @@ const WishContent = () => {
                                         <h3 className="product-name"><a href="#">{product.title} - cod({product.id})</a></h3>
 										</Link>
                                     </div>
-                                    <button onClick={() => handleRemove(product.id)} className="delete"><i className="fa fa-close"></i></button>
+                                    <button onClick={() => removeFromWish(product.id)} className="delete"><i className="fa fa-close"></i></button>
                                 </div>
                                 ))}
 

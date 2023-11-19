@@ -12,10 +12,17 @@ import { Link } from 'react-router-dom';
 export function ProductSection ({id}) {
 
     const { products } = useContext(dataContext);
-
     const { wishProduct } = useContext(wishContext);
-    const { buyProduct } = useContext(cartContext);
+    const { wish } = useContext(wishContext);
+    const { cart } = useContext(cartContext);
 
+    // Función para señalar cuando un producto está en favoritos
+    const [ wishIds, setWishIds ] = useState(()=>wish.map((item) => item.id))
+    useEffect(() => {
+        setWishIds(wish.map((item) => item.id));
+      }, [wish]);
+
+    const { buyProduct } = useContext(cartContext);
     const [vproduct, setvProduct] = useState(null);
     const [loading, setLoading] = useState(true);
 
@@ -28,6 +35,13 @@ export function ProductSection ({id}) {
                     const foundProduct = products.find(p => p.id === parseInt(id));
                     //console.log("el encontrado", foundProduct)
                     if (foundProduct) {
+                        const foundProduct2 = cart.find(p => p.id === parseInt(id));
+                        if (foundProduct2) {
+                            setQuantyTMP(foundProduct2.quanty);
+                        } else {
+                            setQuantyTMP(1);
+                        }
+                        //console.log(foundProduct)
                         setvProduct(foundProduct);
                     } else {
                         setvProduct(null); // no debería ocurrir
@@ -41,6 +55,10 @@ export function ProductSection ({id}) {
         };
         fetchdata();
     }, [products, id]);
+
+    useEffect(() => {
+
+    }, [wishIds]);
 
     const handleQuantityChange = (newQuanty) => {
         // Actualiza el estado quantyTMP cada vez que cambia la cantidad en CartItemCounter
@@ -101,23 +119,25 @@ export function ProductSection ({id}) {
                             <div className="add-to-cart">
                                 <div className="qty-label">
                                     Cantidad
-                                    <CartItemCounter product={[vproduct]} onValueChange={handleQuantityChange} />
+                                    <CartItemCounter product={[vproduct]} actQuanty={quantyTMP} onValueChange={handleQuantityChange} />
                                 </div>
                                 <ButtonAddCart key={vproduct.id}
-                                    title="al Carrito" 
+                                    title="al Carrito"
+                                    classNameButton="add-to-cart-btn"
+                                    classNameHeart="fa fa-shopping-cart"
                                     onClick={()=> buyProduct([vproduct] , quantyTMP, true)} 
-                                    className="fa fa-shopping-cart"
                                 />
+                                        <ul className="product-links">
+                                {cart.some(item => item.id === vproduct.id) ? <span>El producto ya existe en su carrito, ahora actualice la cantidad si lo desea</span> : null}
+                                </ul>
                             </div>
 
                             <ButtonAddCart key={vproduct.id}
                                     title=" Favoritos"
-                                    className="fa fa-heart-o"
+                                    classNameButton="add-to-wishlist"
+                                    classNameHeart={wishIds.includes(vproduct.id) ? "fa fa-heart" : "fa fa-heart-o"}
                                     onClick={()=> wishProduct([vproduct])}
                             >
-                                <ul className="product-btns">
-                                    <li><a href="#"><i className="fa fa-heart-o"></i> Favoritos</a></li>
-                                </ul>
                             </ButtonAddCart>
 
                             <ul className="product-links">

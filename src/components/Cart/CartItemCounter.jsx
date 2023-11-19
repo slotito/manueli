@@ -3,10 +3,10 @@ import PropTypes from 'prop-types'
 import { cartContext } from '../../context/CartContext'
 
 
-const CartItemCounter = ({ product, onValueChange }) => {
+const CartItemCounter = ({ product, actQuanty, onValueChange }) => {
 
     const { buyProduct } = useContext(cartContext);
-    const [quanty, setQuanty] = useState(1);
+    const [quanty, setQuanty] = useState(actQuanty || 1);
 
     useEffect(() => {
         if (product.quanty) {

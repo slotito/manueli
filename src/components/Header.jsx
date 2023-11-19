@@ -77,13 +77,13 @@ export function Header() {
                                         </select>
                                         <input
                                             className="input"
-                                            placeholder="Busque acá"
+                                            placeholder="Digite el texto y presione Buscar"
                                             value={textoBuscado}
                                             onChange={(e) => setTextoBuscado(e.target.value)} 
                                         />
-                                        <button 
+                                        <button style={{"Width": "95px"}}
                                             className="search-btn"
-                                            type="submit    "
+                                            type="submit"
                                         >
                                             Buscar
                                         </button>

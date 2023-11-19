@@ -2,8 +2,8 @@ import PropTypes from "prop-types";
 
 function ButtonAddCart(props) {
   return (
-    <button onClick={props.onClick} className="add-to-cart-btn">
-      <i className={props.className}></i>
+    <button onClick={props.onClick} className={props.classNameButton}>
+      <i className={props.classNameHeart}></i>
       {props.title}
     </button>
   );

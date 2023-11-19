@@ -7,16 +7,16 @@ import '../estilos/Especiales.css'
 import { ProductCard } from '../pages/Products/ProductCard';
 
 import { dataContext } from '../context/DataContext';
-import { cartContext } from '../context/CartContext';
-import { wishContext } from '../context/WishContext';
+//import { cartContext } from '../context/CartContext';
+//import { wishContext } from '../context/WishContext';
 
 export function SeccionProductosNuevos() {
 
     const { products } = useContext(dataContext);
     const [loading, setLoading] = useState(true);
 
-    const { buyProduct } = useContext(cartContext);
-    const { wishProduct } = useContext(wishContext);
+    //const { buyProduct } = useContext(cartContext);
+    //const { wishProduct } = useContext(wishContext);
 
     useEffect(() => {
                 if (products && products.length > 0) {
@@ -38,8 +38,6 @@ export function SeccionProductosNuevos() {
                     <Link to={`/products/${product.id}`} key={product.id}>
                         <ProductCard
                             product={product}
-/*                             buyProduct={buyProduct}
-                            wishProduct={wishProduct} */
                         />
                     </Link>
                 )

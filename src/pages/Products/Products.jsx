@@ -38,35 +38,29 @@ const Products = () => {
       
     return (
         <>
-            {/* <h2>{ category ? `Products / ${category}` : 'All Products'}</h2> */}
-        
-            <div className="section">
-                <div className="container">
-            <div className="row">
-                <div className="col-md-12">
-{/*             <div id="store" className="col-md-9">
-                <div id="store" className="sectionEsp1">
- */}                        <div className="section">
+                     
+                        <div className="section">
                             <div className="container">
                                 <div className="row">
+                                <div id="store" className="col-md-12">
+                                <div className="row">
+                                <div className="col-md-4 col-xs-6">
                                         {filteredProducts.map(product => (
                                         <Link to={`/products/${product.id}`} key={product.id}>
 
                                         <ProductCard
                                             product={product}
                                             buyProduct={buyProduct}
-                                            quanty={1}
+                                            quanty={1} // desde este lugar siempre es 1
                                         />
                                         </Link>
                                     ))}
-                                    
+                                </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                </div>
-                </div>
+        </div>
+        </div>
         </>
     )
 }

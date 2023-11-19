@@ -2,9 +2,22 @@ import { createContext, useState, useEffect } from "react";
 import PropTypes from 'prop-types';
 import { useLocalStorage } from '../components/Cart/useLocalStorage'
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 export const wishContext = createContext();
 
 const WishProvider = ({ children }) => {
+
+  const toastOptions = {
+    position: 'top-right',
+    autoClose: 2000, // Tiempo en milisegundos
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+  };
+  const notify = (message) => toast(message, toastOptions);
 
   const [wish, setWish] = useLocalStorage('wish', []);
   const [wishCount, setWishCount] = useState(0);
@@ -13,24 +26,28 @@ const WishProvider = ({ children }) => {
     setWishCount(wish.length);
   }, [wish]);
 
-  const wishProduct = (product) => {
+  const wishProduct = (product) => {  // Agrega o no un producto al wish
       if (!wish || wish.length === 0) {
-        console.log("no hay wish");
+        //console.log("no hay wish");
         setWish([product[0]]);
+        notify("Producto agregado a favoritos");
       } else {    
         const productrepeat = wish.find((item) => item.id === product[0].id);
         if (productrepeat) {
           console.log("repetido");
+          notify("Producto ya estaba en tus favoritos");
           return;
         } else {
-          console.log("no repetido");
+          notify("Producto agregado a favoritos");
+          //console.log("no repetido");
           setWish((prevWish) => [...prevWish, product[0]]);
         }
       } 
   }
 
   const removeFromWish = (productId) => {
-    const updatedWish = wish.filter((product) => product.id !== productId[0]); // filtra los que coinciden
+    notify("Producto quitado de tus favoritos");
+    const updatedWish = wish.filter((product) => product.id !== productId); // filtra los que coinciden
     setWish(updatedWish);
   };
 
@@ -41,12 +58,17 @@ const WishProvider = ({ children }) => {
     wishCount,
     setWishCount,
     wishProduct,
-    removeFromWish
+    removeFromWish,
   };
 
-  return <wishContext.Provider value={value}>
-    {children}
-    </wishContext.Provider>;
+  return (
+    <>
+      <wishContext.Provider value={value}>
+        {children}
+      </wishContext.Provider>;
+      <ToastContainer />
+    </>
+  );
 };
 export default WishProvider;
 

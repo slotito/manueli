@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import ButtonAddCart from '../../components/ButtonAddCart'
 import { wishContext } from '../../context/WishContext'
 import { cartContext } from '../../context/CartContext'
@@ -8,9 +8,17 @@ export function ProductCard({ product }) {
     const { wishProduct } = useContext(wishContext);
     const { buyProduct } = useContext(cartContext);
     //console.log("el productT", product);
+
+    // Función para señalar cuando un producto está en favoritos
+    const { wish } = useContext(wishContext);
+    const [ wishIds, setWishIds ] = useState(()=>wish.map((item) => item.id))
+    useEffect(() => {
+        setWishIds(wish.map((item) => item.id));
+      }, [wish]);
+
     return (
 
-     
+     <>
     <div className="product">
         <div className="product-img">
  
@@ -26,26 +34,23 @@ export function ProductCard({ product }) {
             <p className="product-category">{product.category}</p>
             <h3 className="product-name"><a href="#">{product.title}</a></h3>
             <h4 className="product-price">$ {product.price} <del className="product-old-price">${(product.price / (1-product.discountPercentage/100)).toFixed(0 )}</del></h4>
-            <div className="product-btns">
-                <ButtonAddCart 
-                    className="fa fa-heart-o"
+{/*             <div className="product-btns">
+ */}                <ButtonAddCart key={product.id}
+                    classNameButton="add-to-wishlist"
+                    classNameHeart={wishIds.includes(product.id) ? "fa fa-heart" : "fa fa-heart-o"}
                     onClick={()=> wishProduct([product])}
-                    >
-                        <button className="add-to-wishlist">
-                            <i className="fa fa-heart-o"></i>
-                            <span className="tooltipp">lo quiero</span>
-                        </button>
-                </ButtonAddCart>
-            </div>
-        </div>
+                />
+{/*             </div>
+ */}        </div>
         <div className="add-to-cart">
             <ButtonAddCart key={product.id} 
                 title="al Carrito" 
+                classNameButton="add-to-cart-btn"
+                classNameHeart="fa fa-shopping-cart"
                 onClick={()=> buyProduct([product], 1, true)} 
-                className="fa fa-shopping-cart"
             />
         </div>
     </div>
-
+    </>
 )}
 

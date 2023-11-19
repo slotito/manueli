@@ -158,8 +158,14 @@ const Checkout = () => {
 									<small>{totalItems} Item(s) seleccionados</small>
 									<h5>TOTAL $: {total}</h5>
 								</div>
-							
-						<a href="#" className="primary-btn order-submit" onClick={handleCheckout}>Finalizar Orden</a>
+
+								{total > 0 ? (
+										<a href="#" className="primary-btn order-submit" onClick={handleCheckout}>
+										Finalizar Orden
+										</a>
+									) : (
+										<h5>El carrito está vacío. Agrega productos para finalizar la orden.</h5>
+								)}
 					</div>
 				</div>
 			</div>
