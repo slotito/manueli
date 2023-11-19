@@ -1,18 +1,25 @@
-import { useForm } from 'react-hook-form';
 import { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
-import { cartContext } from "../../context/CartContext"
+import { cartContext } from "../context/CartContext"
 
 
 const Checkout = () => {
 
     const { cart, removeFromCart, handleClearCart  } = useContext(cartContext);
 
-	// para el manejo del formulario
-	const { register, handleSubmit, watch, formState: { errors }, reset } = useForm();
+	const [ valoresFormulario, setValoresFormulario ] = useState({
+		nombre: '',
+		apellido: '',
+		email: '',
+		direccion: '',
+		ciudad: '',
+		pais: '',
+		telefono: '',
+	});
 
-    useEffect(() => {   
+    useEffect(() => {
+        
 	}, [cart])
 
     const total = cart.reduce((acc, product) => acc + (product.price * product.quanty), 0);
@@ -22,23 +29,18 @@ const Checkout = () => {
       removeFromCart(productId);
     };
 
-	const handleCheckout = (data) => {
-		if (!data.nombre || !data.apellido) {
-			alert('Debe ingresar nombre y apellido para finalizar la compra');
-			return;
-		} else {
-			//console.log('Finalizó la compra, agradecer al usuario por su compra y limpiar el carrito');
-			handleClearCart("MUCHAS GRACIAS POR TU COMPRA !!!!");
-			reset();
-
-		}
+	const handleCheckout = () => {
+		console.log('Finalizó la compra, agradecer al usuario por su compra y limpiar el carrito');
+		handleClearCart();
 	};
 
-	const enviar = (data) => {  // en desuso
-		console.log(data)
-		//e.target.reset()
+	const handleValoresFormulario = (e) => {
+		console.log(e.target.name, e.target.value)
+		setValoresFormulario({
+			...valoresFormulario,
+			[e.target.name]: e.target.value
+		})
 	}
-	
     
 
   return (
@@ -63,69 +65,75 @@ const Checkout = () => {
 		<div className="section">
 			<div className="container">
 				<div className="row">
-
-				<form onSubmit={handleSubmit(handleCheckout)}>
-
 					<div className="col-md-7">
 						<div className="billing-details">
 							<div className="section-title">
 								<h3 className="title">Domicilio de Facturación</h3>
 							</div>
-
+							<form>
 							<div className="form-group">
 								<input 
 									className="input" 
 									type="text" 
-									placeholder="Nombre (es obligatorio)"
-									{...register("nombre", { required: true, maxLength: 20 })}
+									name="nombre" 
+									placeholder="Nombre"
+									onChange={handleValoresFormulario} 
+									value={valoresFormulario.nombre}
 								/>
 							</div>
 							<div className="form-group">
 								<input 
 									className="input" 
 									type="text" 
-									placeholder="Apellido (es obligatorio)" 
-									{...register("apellido", { required: true, maxLength: 20 })}
+									name="apellido" 
+									placeholder="Apellido" 
+									onChange={handleValoresFormulario}
+									value={valoresFormulario.apellido}
 								/>
 							</div>
 							<div className="form-group">
 								<input 
 									className="input" 
 									type="email" 
-									placeholder="Email (no es obligatorio)"
-									{...register("email", { required: false, pattern: /^\S+@\S+$/i })}
+									name="email" 
+									placeholder="Email"
+									onChange={handleValoresFormulario} 
 								/>
 							</div>
 							<div className="form-group">
 								<input 
 									className="input" 
 									type="text" 
-									placeholder="Dirección (no es obligatorio)"
-									{...register("direccion", { required: false, maxLength: 100 })}
+									name="direccion" 
+									placeholder="Dirección"
+									onChange={handleValoresFormulario} 
 								/>
 							</div>
 							<div className="form-group">
 								<input 
 									className="input" 
 									type="text" 
-									placeholder="Ciudad (no es obligatorio)"
-									{...register("ciudad", { required: false, maxLength: 100 })}
+									name="ciudad" 
+									placeholder="Ciudad"
+									onChange={handleValoresFormulario}  
 								/>
 							</div>
 							<div className="form-group">
 								<input 
 									className="input" 
 									type="text" 
-									placeholder="Pais (no es obligatorio)"
-									{...register("pais", { required: false, maxLength: 100 })}
+									name="pais" 
+									placeholder="Pais"
+									onChange={handleValoresFormulario} 
 								/>
 							</div>
 							<div className="form-group">
 								<input 
 									className="input" 
 									type="tel" 
-									placeholder="Telefono (no es obligatorio)"
-									{...register("telefono", { required: false, maxLength: 11 })}
+									name="tel" 
+									placeholder="Telefono"
+									onChange={handleValoresFormulario} 
 								/>
 							</div>
 							<div className="form-group">
@@ -141,7 +149,46 @@ const Checkout = () => {
 									</div>
 								</div>
 							</div>
+							</form>
 						</div>
+
+						<div className="shiping-details">
+
+							<div className="input-checkbox">
+								<input type="checkbox" id="shiping-address" />
+{/* 								<label for="shiping-address">
+									<span></span>
+									Ship to a diffrent address?
+								</label> */}
+								<div className="caption">
+									<div className="form-group">
+										<input className="input" type="text" name="first-name" placeholder="First Name" />
+									</div>
+									<div className="form-group">
+										<input className="input" type="text" name="last-name" placeholder="Last Name" />
+									</div>
+									<div className="form-group">
+										<input className="input" type="email" name="email" placeholder="Email"  />
+									</div>
+									<div className="form-group">
+										<input className="input" type="text" name="address" placeholder="Address" />
+									</div>
+									<div className="form-group">
+										<input className="input" type="text" name="city" placeholder="City" />
+									</div>
+									<div className="form-group">
+										<input className="input" type="text" name="country" placeholder="Country" />
+									</div>
+									<div className="form-group">
+										<input className="input" type="text" name="zip-code" placeholder="ZIP Code" />
+									</div>
+									<div className="form-group">
+										<input className="input" type="tel" name="tel" placeholder="Telephone" />
+									</div>
+								</div>
+							</div>
+						</div>
+
 					</div>
 
 					<div className="col-md-5 order-details">
@@ -175,18 +222,13 @@ const Checkout = () => {
 								</div>
 
 								{total > 0 ? (
-
-/* 										<a href="#" className="primary-btn order-submit" onClick={handleCheckout}>
- */										
-										<button type='submit'className="primary-btn order-submit">
-											Finalizar Orden
-										</button>
-										
+										<a href="#" className="primary-btn order-submit" onClick={handleCheckout}>
+										Finalizar Orden
+										</a>
 									) : (
 										<h5>El carrito está vacío. Agrega productos para finalizar la orden.</h5>
 								)}
 					</div>
-					</form>
 				</div>
 			</div>
 		</div>

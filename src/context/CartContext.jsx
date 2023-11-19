@@ -66,13 +66,13 @@ const CartProvider = ({ children }) => {
     setCart(updatedCart);
   };
 
-  const handleClearCart = () => {
+  const handleClearCart = (message) => {
     try {
       window.localStorage.removeItem('cart'); 
       console.log('Carrito eliminado del almacenamiento local');
       setCart([]);
       setCartCount(0);
-      notify("MUCHAS GRACIAS POR TU COMPRA !!!!")
+      notify(message)
     } catch (error) {
       console.error('Error al eliminar el carrito del almacenamiento local', error);
     }
