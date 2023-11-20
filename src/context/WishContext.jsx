@@ -34,8 +34,9 @@ const WishProvider = ({ children }) => {
       } else {    
         const productrepeat = wish.find((item) => item.id === product[0].id);
         if (productrepeat) {
-          console.log("repetido");
-          notify("Producto ya estaba en tus favoritos");
+          const updatedWish = wish.filter((item) => item.ide !== product[0].ide); // filtra los que coinciden
+          setWish(updatedWish);
+          notify("Producto quitado de tus favoritos");    
           return;
         } else {
           notify("Producto agregado a favoritos");
