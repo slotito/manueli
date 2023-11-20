@@ -47,7 +47,7 @@ const WishProvider = ({ children }) => {
 
   const removeFromWish = (productId) => {
     notify("Producto quitado de tus favoritos");
-    const updatedWish = wish.filter((product) => product.id !== productId); // filtra los que coinciden
+    const updatedWish = wish.filter((product) => product.ide !== productId); // filtra los que coinciden
     setWish(updatedWish);
   };
 

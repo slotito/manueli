@@ -46,7 +46,7 @@ const Products = () => {
                                 <div className="row">
                                 <div className="col-md-4 col-xs-6">
                                         {filteredProducts.map(product => (
-                                        <Link to={`/products/${product.id}`} key={product.id}>
+                                        <Link to={`/products/${product.ide}`} key={product.ide}>
 
                                         <ProductCard
                                             product={product}

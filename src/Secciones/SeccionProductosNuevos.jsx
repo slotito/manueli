@@ -46,11 +46,11 @@ export function SeccionProductosNuevos() {
     } else {
 
     const productsCards  = enPagina_nuevos.map((item) => {
-        const product = products.find(product => (product.id === item.id_nuevo && item.home_muestra));
+        const product = products.find(product => (product.ide === item.id_nuevo && item.home_muestra));
         //console.log("el product", product);
         if (product) {
                 return (
-                    <Link to={`/products/${product.id}`} key={product.id}>
+                    <Link to={`/products/${product.ide}`} key={product.ide}>
                         <ProductCard
                             product={product}
                         />

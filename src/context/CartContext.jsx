@@ -35,11 +35,11 @@ const CartProvider = ({ children }) => {
       setCartCount(1);
       notify("Producto agregado a tu carrito");
     } else {
-        const productrepeat = cart.find((item) => item.id === product[0].id);
+        const productrepeat = cart.find((item) => item.ide === product[0].ide);
         if (productrepeat) {
           //console.log("repetido");
           const newCart = cart.map((item) => {
-            if (item.id === product[0].id) {
+            if (item.ide === product[0].ide) {
               notify("Se ha Actualizado la cantidad en tu carrito");
               return { ...item, quanty: vquanty}  //(item.quanty || 1) + vquanty };
             } else {
@@ -62,7 +62,7 @@ const CartProvider = ({ children }) => {
   const removeFromCart = (productId) => {
     // Filtra los productos que no coincidan con el productId
     notify("Producto eliminado de tu carrito");
-    const updatedCart = cart.filter((product) => product.id !== productId);
+    const updatedCart = cart.filter((product) => product.ide !== productId);
     setCart(updatedCart);
   };
 

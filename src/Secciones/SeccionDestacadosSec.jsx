@@ -5,7 +5,7 @@ import { useState } from 'react';
 export function NuevosDestacadosSec({ nom_destaca, cat_destaca}) {
 
 	const [selectedCategory, setSelectedCategory] = useState(''); // Inicialmente, no hay categoría seleccionada
-    console.log(selectedCategory)
+    //console.log(selectedCategory)
     return (
       
         <>

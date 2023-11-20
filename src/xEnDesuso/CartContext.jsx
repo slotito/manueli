@@ -20,11 +20,11 @@ export function CartProvider({ children }) {
         // 1. creamos la funcion que va a modificar el estado cart del contexto
     
         // 2. verificar si el producto ya existe en el carrito
-        if (cart.some((prod) => prod.id === product.id)) {
+        if (cart.some((prod) => prod.ide === product.ide)) {
           // 3. si existe, actualizamos la cantidad
           const newCart = cart.map((prod) => {
             // 3.1 recorremos el carrito
-            if (prod.id === product.id) {
+            if (prod.ide === product.ide) {
               // 3.2 si el producto existe, actualizamos la cantidad
               return {
                 ...prod, // 3.3 copiamos las propiedades del producto

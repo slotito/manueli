@@ -32,10 +32,10 @@ export function ProductSection ({id}) {
         const fetchdata = async () => {
             try {
                 if (products.length > 0) {
-                    const foundProduct = products.find(p => p.id === parseInt(id));
+                    const foundProduct = products.find(p => p.ide === parseInt(id));
                     //console.log("el encontrado", foundProduct)
                     if (foundProduct) {
-                        const foundProduct2 = cart.find(p => p.id === parseInt(id));
+                        const foundProduct2 = cart.find(p => p.ide === parseInt(id));
                         if (foundProduct2) {
                             setQuantyTMP(foundProduct2.quanty);
                         } else {
@@ -108,7 +108,7 @@ export function ProductSection ({id}) {
 
                     <div className="col-md-5">
                         <div className="product-details">
-                            <h2 className="product-name">cod.: {vproduct.id } - {vproduct.title}</h2>
+                            <h2 className="product-name">cod.: {vproduct.ide } - {vproduct.title}</h2>
                             <div>
                             </div>
                             <div>
@@ -121,7 +121,7 @@ export function ProductSection ({id}) {
                                     Cantidad
                                     <CartItemCounter product={[vproduct]} actQuanty={quantyTMP} onValueChange={handleQuantityChange} />
                                 </div>
-                                <ButtonAddCart key={vproduct.id}
+                                <ButtonAddCart key={vproduct.ide}
                                     title="al Carrito"
                                     classNameButton="add-to-cart-btn"
                                     classNameHeart="fa fa-shopping-cart"
@@ -132,7 +132,7 @@ export function ProductSection ({id}) {
                                 </ul>
                             </div>
 
-                            <ButtonAddCart key={vproduct.id}
+                            <ButtonAddCart key={vproduct.ide}
                                     title=" Favoritos"
                                     classNameButton="add-to-wishlist"
                                     classNameHeart={wishIds.includes(vproduct.id) ? "fa fa-heart" : "fa fa-heart-o"}

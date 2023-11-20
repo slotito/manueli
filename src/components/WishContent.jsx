@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react'
+import { useContext } from 'react'
 import { Link } from 'react-router-dom'
 
 import {wishContext} from "../context/WishContext"
@@ -37,7 +37,7 @@ const WishContent = () => {
 		<div className="section">
 			<div className="container">
 				<div className="row">
-					<div className="col-md-5 order-details" key={wish.id}>
+					<div className="col-md-5 order-details" key={wish.ide}>
 						<div className="section-title text-center">
 							<h3 className="title">Los quiero ...</h3>
 						</div>
@@ -49,18 +49,18 @@ const WishContent = () => {
 
                         {wish.map((product) => (
                             
-                                    <div key={product.id} className="product-widget">
+                                    <div key={product.ide} className="product-widget">
                                     <div className="product-img">
                                         <img src={product.thumbnail} alt="" />
                                     </div>
                                     <div className="product-body">
-										<Link to={`/products/${product.id}`}>
+										<Link to={`/products/${product.ide}`}>
                                         <h3 className="product-name"><a href="#">{product.title} - cod({product.id})</a></h3>
 										</Link>
                                     </div>
-                                    <button onClick={() => removeFromWish(product.id)} className="delete"><i className="fa fa-close"></i></button>
+                                    <button onClick={() => removeFromWish(product.ide)} className="delete"><i className="fa fa-close"></i></button>
                                 </div>
-                                ))}
+                        	))}
 
 					</div>
 				</div>
