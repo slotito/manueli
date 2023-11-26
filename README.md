@@ -17,3 +17,9 @@ Nuevos Productos: configurable desde Firebase. Al igual que el apartado anterior
 A continuación una captura de la pantalla principal con las secciones indicadas:
 
 ![1701029155413](image/README/1701029155413.png)
+
+A continuación un pequeño gif que muestra el proceso de compra:
+
+![1701030618785](image/README/1701030618785.png)
+
+La idea es ir profundizando y perfeccionando esta primera entrega.
