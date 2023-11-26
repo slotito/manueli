@@ -17,6 +17,8 @@ import CartContent from "./components/Cart/CartContent";
 import WishContent from "./components/WishContent";
 import Checkout from "./pages/Checkout/Checkout";
 
+import Auth from "./pages/Auth/Auth";
+
 function App() {
 
     // por ahora en desuso
@@ -51,6 +53,8 @@ function App() {
                 <Route path="/products/:id" element={<ProductPage />} />
                 <Route path="/cart" element={<Checkout />} />
                 <Route path="/misDeseos" element={<WishContent />} />
+                <Route path="/auth" element={<Auth />} />
+
             </Routes>
         </div>
         </BrowserRouter>

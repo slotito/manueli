@@ -47,7 +47,7 @@ export function Header() {
                             <li><a href="#"><i className="fa fa-map-marker"></i> 1234 La Celeste</a></li>
                         </ul>
                         <ul className="header-links pull-right">
-                            <li><a href="#"><i className="fa fa-dollar"></i> UYU/USD</a></li>
+                            <li><a href="#"><i className="fa fa-dollar"></i> UYU</a></li>
                             <li><a href="#"><i className="fa fa-user-o"></i> Mi Cuenta</a></li>
                         </ul>
                     </div>
@@ -75,7 +75,7 @@ export function Header() {
                                                 <option key={index + 1} value={index + 1}>{category}</option>
                                             ))}
                                         </select>
-                                        <input style={{"width": "300px"}}
+                                        <input style={{"width": "260px"}}
                                             className="input"
                                             placeholder="Digite el texto y presione Buscar"
                                             value={textoBuscado}

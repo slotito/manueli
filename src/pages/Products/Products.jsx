@@ -42,8 +42,9 @@ const Products = () => {
                         <div className="section">
                             <div className="container">
                                 <div className="row">
-                                <div id="store" className="col-md-12">
+                                <div id="store" className="col-md-9">
                                 <div className="row">
+
                                 <div className="col-md-4 col-xs-6">
                                         {filteredProducts.map(product => (
                                         <Link to={`/products/${product.ide}`} key={product.ide}>
@@ -57,6 +58,7 @@ const Products = () => {
                                     ))}
                                 </div>
                                 </div>
+                              
                             </div>
                         </div>
         </div>

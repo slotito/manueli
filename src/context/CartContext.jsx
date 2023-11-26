@@ -69,12 +69,12 @@ const CartProvider = ({ children }) => {
   const handleClearCart = (message) => {
     try {
       window.localStorage.removeItem('cart'); 
-      console.log('Carrito eliminado del almacenamiento local');
+      //console.log('Carrito eliminado del almacenamiento local');
       setCart([]);
       setCartCount(0);
       notify(message)
     } catch (error) {
-      console.error('Error al eliminar el carrito del almacenamiento local', error);
+      //console.error('Error al eliminar el carrito del almacenamiento local', error);
     }
   };
   
@@ -86,7 +86,8 @@ const CartProvider = ({ children }) => {
     setCartCount,
     buyProduct,
     removeFromCart,
-    handleClearCart
+    handleClearCart,
+
   };
 
   return (

@@ -1,13 +1,20 @@
-import { useForm } from 'react-hook-form';
+import { set, useForm } from 'react-hook-form';
 import { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 import { cartContext } from "../../context/CartContext"
 
+import { addDoc, collection, getDocs } from 'firebase/firestore/lite';
+import  db   from '../../config/firebase.config.js';
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Checkout = () => {
 
     const { cart, removeFromCart, handleClearCart  } = useContext(cartContext);
+
+	const [ pedidoId, setPedidoId ] = useState("");	
 
 	// para el manejo del formulario
 	const { register, handleSubmit, watch, formState: { errors }, reset } = useForm();
@@ -27,20 +34,53 @@ const Checkout = () => {
 			alert('Debe ingresar nombre y apellido para finalizar la compra');
 			return;
 		} else {
-			//console.log('Finalizó la compra, agradecer al usuario por su compra y limpiar el carrito');
-			handleClearCart("MUCHAS GRACIAS POR TU COMPRA !!!!");
-			reset();
+
+			const pedido = {
+				cliente: data,
+				items: cart,
+				total: total,
+			}
+	
+			const pedidosRef = collection(db, "orders");
+	
+			addDoc(pedidosRef, pedido)
+				.then((docRef) => {
+					//console.log("Documento ID: ", docRef.id);
+					//toast.success("Documento ID: ", docRef.id);
+					setPedidoId(docRef.id);
+					handleClearCart("MUCHAS GRACIAS POR TU COMPRA !!!!");
+					reset();
+			}).catch((error) => {
+				toast.error("Error al agregar el documento: ", error);
+				console.error("Error al agregar el documento: ", error);
+			});
+		
+
 
 		}
 	};
 
-	const enviar = (data) => {  // en desuso
-		console.log(data)
-		//e.target.reset()
+
+	if (pedidoId) {
+		return (
+			<div className="section">
+				<div className="container">
+					<div className="row">
+						<div className="col-md-12">
+							<div className="order-summary clearfix">
+								<div className="section-title">
+									<h3 className="title">Tu pedido fue realizado con éxito</h3>
+								</div>
+								<h4>El número de tu pedido es: {pedidoId}</h4>
+								<h5>En breve recibirás un correo electrónico con los detalles de tu compra.</h5>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		)
 	}
 	
-    
-
   return (
     <>
 		<div id="breadcrumb" className="section">

@@ -1,8 +1,19 @@
-# React + Vite
+# Proyecto carrito con React - Instituto IBEC
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este proyecto hace parte de una entrega inicial del curso de React. Algunas de las premisas básicas era comprender los principales componentes inteligentes, utilizar los principales hooks, usar enrutamiento, aplicar renderizado condicional y manejo de eventos.
 
-Currently, two official plugins are available:
+A propuesta del profesor Josué Oroya [@joshuacba08](https://twitter.com/joshuacba08) integramos en forma primaria Firebase.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Las secciones:
+
+Header: con un buscador y un contador de "favoritos" y carrito de compras
+
+Banner: con un navegador a distintas secciones
+
+Categorías destacadas: configurable desde Firebase. Se le indica desde la base de datos qué categorías se quiere destacar. La página está configurada para mostrar 3 pero podrían indicarse más.
+
+Nuevos Productos: configurable desde Firebase. Al igual que el apartado anterior está pensado en el deseo de destacar ciertos productos durante el tiempo deseado.
+
+A continuación una captura de la pantalla principal con las secciones indicadas:
+
+![1701029155413](image/README/1701029155413.png)

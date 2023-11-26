@@ -55,7 +55,7 @@ const WishContent = () => {
                                     </div>
                                     <div className="product-body">
 										<Link to={`/products/${product.ide}`}>
-                                        <h3 className="product-name"><a href="#">{product.title} - cod({product.id})</a></h3>
+                                        <h3 className="product-name"><a href="#">{product.title} - cod({product.ide})</a></h3>
 										</Link>
                                     </div>
                                     <button onClick={() => removeFromWish(product.ide)} className="delete"><i className="fa fa-close"></i></button>
