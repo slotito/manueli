@@ -36,7 +36,8 @@ const Checkout = () => {
 		} else {
 
 			const pedido = {
-				cliente: data,
+				date: new Date(),
+				customer: data,
 				items: cart,
 				total: total,
 			}

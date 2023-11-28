@@ -13,27 +13,17 @@ import CartProvider from './context/CartContext';
 import WishProvider from "./context/WishContext";
 
 import SeccionNuevosProductos2 from './components/NuevosProductos2';
-import CartContent from "./components/Cart/CartContent";
 import WishContent from "./components/WishContent";
 import Checkout from "./pages/Checkout/Checkout";
 
 import Auth from "./pages/Auth/Auth";
 
+// temporal
+import { getAuth } from "firebase/auth";
+import MisCompras from "./components/MisCompras";
+const auth = getAuth();
+
 function App() {
-
-    // por ahora en desuso
-    //const [ dataMongoDB, setDataMongoDB ] = useState([]);
-/* 
-    useEffect(() => {
-        queryCollection()
-            .then(data => {
-                setDataMongoDB(data); // Almacena los datos en el estado
-            }).catch(err => {
-                console.log(err);
-            });
-    }, []); */
-
-
 
     return (
         <DataProvider>
@@ -53,6 +43,7 @@ function App() {
                 <Route path="/products/:id" element={<ProductPage />} />
                 <Route path="/cart" element={<Checkout />} />
                 <Route path="/misDeseos" element={<WishContent />} />
+                <Route path="/misCompras" element={<MisCompras />} />
                 <Route path="/auth" element={<Auth />} />
 
             </Routes>

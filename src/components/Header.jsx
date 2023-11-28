@@ -48,7 +48,11 @@ export function Header() {
                         </ul>
                         <ul className="header-links pull-right">
                             <li><a href="#"><i className="fa fa-dollar"></i> UYU</a></li>
-                            <li><a href="#"><i className="fa fa-user-o"></i> Mi Cuenta</a></li>
+                            <li>
+                                <NavLink to="/misCompras">
+                                <a href="#"><i className="fa fa-user-o"></i> Mi Cuenta</a>
+                                </NavLink>
+                            </li>
                         </ul>
                     </div>
                 </div>
