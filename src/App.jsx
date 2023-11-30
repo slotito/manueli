@@ -60,7 +60,7 @@ function App() {
                 <Route path="/products/:id" element={<ProductPage />} />
                 <Route path="/cart" element={<Checkout userMail={user}/>} />
                 <Route path="/misDeseos" element={<WishContent />} />
-                <Route path="/misCompras" element={<MisCompras />} />
+                <Route path="/misCompras" element={<MisCompras userMail={user}/>} />
                 <Route path="/auth" element={<Auth />} />
                 <Route path="/login" element={<Login />} />
 

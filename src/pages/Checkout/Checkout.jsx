@@ -16,7 +16,8 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const Checkout = (props) => {
 
-	console.log(props);
+	const userEmail = props.userMail?.email;
+	//console.log("userEmail", userEmail);
 
     const { cart, removeFromCart, handleClearCart  } = useContext(cartContext);
 
@@ -42,12 +43,25 @@ const Checkout = (props) => {
 		} else {
 
 			const pedido = {
-				date: new Date(),
+				date: formatarFecha(new Date()),
 				customer: data,
+				userEmail: props.userMail.email,   // a efectos de buscar posteriormente los pedidos de un usuario
 				items: cart,
 				total: total,
 			}
-	
+			function formatarFecha(fecha) {
+				const opciones = { 
+					day: 'numeric', 
+					month: 'numeric', 
+					year: 'numeric', 
+					hour: 'numeric', 
+					minute: 'numeric', 
+					second: 'numeric', 
+					hour12: false 
+				};
+				return new Intl.DateTimeFormat('es-ES', opciones).format(fecha);
+			}
+
 			const pedidosRef = collection(db, "orders");
 	
 			addDoc(pedidosRef, pedido)
@@ -106,13 +120,13 @@ const Checkout = (props) => {
 			</div>
 		</div>
 
-		{ props.userMail ? <Auth userMail= {props.userMail} /> : <Login />}
+{/* 		{ props.userMail ? <Auth userMail= {props.userMail} /> : <Login />} */}
 
 		<div className="section">
 			<div className="container">
 				<div className="row">
 
-				<form onSubmit={handleSubmit(handleCheckout)}>
+				<form onSubmit={handleSubmit(handleCheckout)} disabled={userEmail ? false : true}> 
 
 					<div className="col-md-7">
 						<div className="billing-details">

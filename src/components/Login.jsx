@@ -1,15 +1,17 @@
 import { useState } from "react";
-//import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { appFirebase } from "../config/firebase.config"
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 
 const auth = getAuth(appFirebase);
+
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
 
+    const navigate = useNavigate();
     const [registrando, setRegistrando] = useState(false)
 
     const functAutenticacion = async(e) => {
@@ -20,10 +22,12 @@ const Login = () => {
         try {
             if (registrando) {
                 await createUserWithEmailAndPassword(auth, email, password)
+                navigate('/');
+                toast.success("Bienvenido !!!");
             } else {
                 await signInWithEmailAndPassword(auth, email, password)
-                toast.success("Bienvenido !!!");
-                //history.push('/');
+                navigate('/');
+                toast.success("Bienvenido nuevamente !!!");
             }
         } catch (error) {
             toast.error("Error de logueo ", error);
@@ -39,7 +43,7 @@ const Login = () => {
                 <button type="submit">{registrando ? "Registrarse" : "Inicia Sesión"}</button>
             </form>
             <h4>
-                {registrando ? "Si ya tienes cuenta ..." : "No tienes cuenta ..."}
+                {registrando ? "Si ya tienes cuenta ..." : "Su NO tienes cuenta ..."}
                 <button onClick={()=>setRegistrando(!registrando)}>
                     {registrando ? "Iniciar Sesión" : "Registrate"}
                 </button>
