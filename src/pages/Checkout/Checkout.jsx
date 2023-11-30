@@ -2,15 +2,21 @@ import { set, useForm } from 'react-hook-form';
 import { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
+
+import Auth from "../../components/Logout.jsx";
+import Login from "../../components/Login";
+
 import { cartContext } from "../../context/CartContext"
 
 import { addDoc, collection, getDocs } from 'firebase/firestore/lite';
-import  db   from '../../config/firebase.config.js';
+import { db }   from '../../config/firebase.config.js';
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const Checkout = () => {
+const Checkout = (props) => {
+
+	console.log(props);
 
     const { cart, removeFromCart, handleClearCart  } = useContext(cartContext);
 
@@ -53,7 +59,7 @@ const Checkout = () => {
 					reset();
 			}).catch((error) => {
 				toast.error("Error al agregar el documento: ", error);
-				console.error("Error al agregar el documento: ", error);
+				//console.error("Error al agregar el documento: ", error);
 			});
 		
 
@@ -100,6 +106,7 @@ const Checkout = () => {
 			</div>
 		</div>
 
+		{ props.userMail ? <Auth userMail= {props.userMail} /> : <Login />}
 
 		<div className="section">
 			<div className="container">

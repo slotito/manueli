@@ -6,6 +6,7 @@ import { getFirestore } from 'firebase/firestore/lite';
 import { seedData } from "../utils/firestore"; // importo la funcion seedData que me permite agregar datos a la base de datos de firestore de forma automatizada
 import { arrayProducts } from "../datos/products"; // importo el array de objetos que quiero agregar a la base de datos de firestore
 
+
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyDY8LhRzpVajBVvn4cm3y3JVoW7oz7qS4k",
@@ -17,10 +18,10 @@ const firebaseConfig = {
 };
 
 // Inicializo Firebase
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+const appFirebase = initializeApp(firebaseConfig);
+const db = getFirestore(appFirebase);
 
-export default db;
+export { db, appFirebase }
 
 
 // correr este bloque solo cuando quiera agregar datos a la base de datos de firestore de forma automatizada

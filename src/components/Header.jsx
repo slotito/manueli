@@ -6,7 +6,12 @@ import { cartContext } from "../context/CartContext";
 import { wishContext } from "../context/WishContext";
 import { dataContext } from "../context/DataContext";
 
-export function Header() {
+import Login from "./Login";
+import Logout from "./Logout";
+
+export function Header(props) {
+
+    const userEmail = props.userMail;
 
     const { cartCount } = useContext(cartContext);
     const { wishCount } = useContext(wishContext);
@@ -17,7 +22,8 @@ export function Header() {
 
     const [textoBuscado, setTextoBuscado] = useState("");
 
-
+    //const { user } = useContext(cartContext);
+    //console.log(user);
 
     const navigate = useNavigate();
 
@@ -36,6 +42,20 @@ export function Header() {
         }
     }
 
+    function MiCuentaLink({ userEmail }) {
+        if (userEmail) {
+          // Si userEmail está definido, mostrar NavLink a la página de logout
+          return <Logout />;
+        } else {
+          // Si userEmail no está definido, mostrar NavLink a la página de login
+          return (
+            <NavLink to="/login">
+                <i className="fa fa-user-o"></i> {userEmail ? `Mi Cuenta: ${userEmail.email}` : 'Mi Cuenta'}
+            </NavLink>
+          );
+        }
+      }
+
     return (
         <>
             <header>
@@ -49,9 +69,7 @@ export function Header() {
                         <ul className="header-links pull-right">
                             <li><a href="#"><i className="fa fa-dollar"></i> UYU</a></li>
                             <li>
-                                <NavLink to="/misCompras">
-                                <a href="#"><i className="fa fa-user-o"></i> Mi Cuenta</a>
-                                </NavLink>
+                                <MiCuentaLink userEmail={userEmail} />
                             </li>
                         </ul>
                     </div>
@@ -60,7 +78,7 @@ export function Header() {
                 <div id="header">
                     <div className="container">
                         <div className="row">
-                            <div className="col-md-3">
+                            <div className="col-md-2">
                                 <div className="header-logo">
                                     <NavLink to="/" className="logo">
                                     <a href="#" className="logo2">
@@ -95,8 +113,19 @@ export function Header() {
                                 </div>
                             </div>
 
-                            <div className="col-md-3 clearfix">
+                            <div className="col-md-4 clearfix">
                                 <div className="header-ctn">
+                                    {userEmail ? (
+                                    <div>
+                                        <a href="#">
+                                            <i className="fa fa-money"></i>
+                                            <NavLink to="/misCompras">
+                                                <span>Compras</span>
+                                            </NavLink>
+                                        </a>
+                                    </div>
+                                    ) : null }
+
                                     <div>
                                         <a href="#">
                                             <i className="fa fa-heart-o"></i>

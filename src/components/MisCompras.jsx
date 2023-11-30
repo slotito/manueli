@@ -1,5 +1,5 @@
 import { getFirestore, collection, getDocs } from "firebase/firestore/lite"
-import  db  from "../config/firebase.config"
+import { db }  from "../config/firebase.config"
 import { useEffect, useState } from "react"
 
 const MisCompras = () => {
@@ -47,10 +47,10 @@ const MisCompras = () => {
             <strong>Fecha:</strong> {formatDateTime(order.fecha)}<br />
             <strong>Cliente:</strong> <br />
             <strong>Items:</strong>
-            <ul>
+            <ul key={order.id}>
               {order.items.map((item) => (
                 <li key={item.ide}>
-                  Cod.:{item.ide} : {item.category} - {item.title} - Cantidad: {item.quanty} - Precio: {item.price}
+                  Cod.:{item.ide} : {item.category} - {item.title} - Cantidad: {item.quanty} - Precio: {item.price} - Subtotal: {item.price * item.quanty }
                 </li>
               ))}
             </ul>

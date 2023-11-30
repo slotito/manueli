@@ -9,7 +9,7 @@ export const cartContext = createContext();
 
 const CartProvider = ({ children }) => {
 
-  const toastOptions = {
+  const toastOptions = {   // configuro los mensajes emergentes
     position: 'top-right',
     autoClose: 2000, // Tiempo en milisegundos
     hideProgressBar: false,
@@ -22,9 +22,11 @@ const CartProvider = ({ children }) => {
   const [cart, setCart] = useLocalStorage('cart', [])
   const [cartCount, setCartCount] = useState(0);
   
+  
   useEffect(() => {
     setCartCount(cart.length);
   }, [cart]);
+
 
   const buyProduct = (product, vquanty, execute) => {
     if (execute) {

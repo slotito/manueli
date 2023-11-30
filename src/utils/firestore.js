@@ -1,5 +1,5 @@
 //Crear nuestras funciones para interactuar con Firestore
-import db from "../config/firebase.config"; // importo la configuracion de firestore
+import { db } from "../config/firebase.config"; // importo la configuracion de firestore
 
 import { collection, addDoc, getDocs, query } from "firebase/firestore/lite"; // importo las funciones que voy a utilizar de firestore
 
