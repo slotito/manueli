@@ -6,7 +6,7 @@ A propuesta del profesor Josué Oroya [@joshuacba08](https://twitter.com/joshuac
 
 Las secciones:
 
-Header: con un buscador y un contador de "favoritos" y carrito de compras
+Header: con un buscador y un contador de "favoritos", carrito de compras e historial de compras
 
 Banner: con un navegador a distintas secciones
 
@@ -21,5 +21,13 @@ A continuación una captura de la pantalla principal con las secciones indicadas
 A continuación un pequeño gif que muestra el proceso de compra:
 
 ![1701030618785](image/README/1701030618785.png)
+
+
+
+Nota:
+
+Al finalizar una compra el usuario deberá loguearse o registrarse en caso de ser nuevo. En ese deberá ingresar algunos datos mínimos para la facturación y se le habilitará el botón para finalizar la compra.
+
+Esto quedará guardado en FIREBASE y se podrá consultar el historial en el botón "Compras" en el Header, botón sólo visible si el usuario está logueado.
 
 La idea es ir profundizando y perfeccionando esta primera entrega.

@@ -69,7 +69,8 @@ const Checkout = (props) => {
 					handleClearCart("MUCHAS GRACIAS POR TU COMPRA !!!!");
 					reset();
 			}).catch((error) => {
-				toast.error("Error al agregar el documento: ", error);
+				const errorCode = error.code;
+				toast.error("Error al agregar el documento: " + errorCode);
 				//console.error("Error al agregar el documento: ", error);
 			});
 		

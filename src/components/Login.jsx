@@ -30,7 +30,8 @@ const Login = () => {
                 toast.success("Bienvenido nuevamente !!!");
             }
         } catch (error) {
-            toast.error("Error de logueo ", error);
+            const errorCode = error.code;
+            toast.error("Error de logueo:" + errorCode);
         }
     }
 
@@ -49,8 +50,10 @@ const Login = () => {
                 <button onClick={()=>setRegistrando(!registrando)}>
                     {registrando ? "Iniciar Sesión" : "Registrate"}
                 </button>
+                {!registrando ? "" : <h4 style={{ color: 'red' }}>Atención: la contraseña debe tener al menos 6 caracteres</h4>}
             </h4> 
         </div>
+
 
      
     </>
