@@ -1,16 +1,36 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ProductCard } from "../components/ProductCard";
-import enPagina_nuevos from '../datos/enPagina_nuevos.json';
+
+// En desuso variables locales
+//import enPagina_nuevos from '../datos/enPagina_nuevos.json';
 
 import { useProducts } from '../context/ProductsContext';
 import { cartContext } from "../context/CartContext";
+import { getItems } from "../utils/firestore";
 
 export function SeccionNuevosProductos() {
 
 	const productsData = useProducts();
 	const { buyProduct } = useContext(cartContext);
+	const [ productsNuevos, setProductsNuevos ] = useState([]);
 
-	const productsCards  = enPagina_nuevos.map((item) => {
+
+	const getProductsNuevos = async () => {
+        try{
+            const response = await getItems('enPagina_Nuevos')
+            setProductsNuevos(response);   // Carga 'productos nuevos'
+        } catch(err){
+            console.error(err);
+        }
+    }
+    useEffect(()=>{
+		getProductsNuevos();
+	}, [])
+
+
+
+
+	const productsCards  = productsNuevos.map((item) => {
 		const product = productsData.products.find(product => (product.id === item.id_nuevo));
 		if (product) {
 				return (

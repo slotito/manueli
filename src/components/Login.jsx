@@ -37,6 +37,8 @@ const Login = () => {
   return (
     <>
         <div className="container">
+
+        
             <form onSubmit={functAutenticacion}>
                 <input type="text" placeholder="ingreses email" id="email"/>
                 <input type="password" placeholder="ingrese contraseña" id="password"/>
@@ -49,6 +51,8 @@ const Login = () => {
                 </button>
             </h4> 
         </div>
+
+     
     </>
   )
 }

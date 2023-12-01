@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { NavLink} from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
@@ -6,7 +7,7 @@ import { cartContext } from "../context/CartContext";
 import { wishContext } from "../context/WishContext";
 import { dataContext } from "../context/DataContext";
 
-import Login from "./Login";
+//import Login from "./Login";
 import Logout from "./Logout";
 
 export function Header(props) {

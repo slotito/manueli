@@ -1,3 +1,5 @@
+import { NavLink } from "react-router-dom";
+
 export function Footer() {
     return (
 
@@ -20,11 +22,32 @@ export function Footer() {
 							<div className="footer">
 								<h3 className="footer-title">Categorias</h3>
 								<ul className="footer-links">
-									<li><a href="#">Ofertas</a></li>
-									<li><a href="#">Noteboks</a></li>
-									<li><a href="#">Celulares</a></li>
-									<li><a href="#">Cameras</a></li>
-									<li><a href="#">Accesorios</a></li>
+									<li>
+										<NavLink to="/nuevos2">
+											<a href="#">Ofertas</a>
+										</NavLink>
+									</li>
+									<li>
+										<NavLink to="/categorias/laptops">
+											<a href="#">Notebooks</a>
+										</NavLink>
+									</li>
+									<li>
+										<NavLink to="/categorias/smartphones">
+											<a href="#">Celulares</a>
+										</NavLink>
+									</li>
+									<li>
+										<NavLink to="/categorias/fragrances">
+											<a href="#">Fragancias</a>
+										</NavLink>
+									</li>
+									<li>
+										<NavLink to="/categorias/home-decoration">
+											<a href="#">Decoración</a>
+										</NavLink>
+									</li>
+
 								</ul>
 							</div>
 						</div>
@@ -47,8 +70,8 @@ export function Footer() {
 							<div className="footer">
 								<h3 className="footer-title">Servicio</h3>
 								<ul className="footer-links">
-									<li><a href="#">Mi Cuenta</a></li>
-									<li><a href="#">Ayuda</a></li>
+{/* 									<li><a href="#">Mi Cuenta</a></li>
+ */}									<li><a href="#">Ayuda</a></li>
 								</ul>
 							</div>
 						</div>

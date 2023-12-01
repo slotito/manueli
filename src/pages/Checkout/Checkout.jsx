@@ -2,10 +2,6 @@ import { set, useForm } from 'react-hook-form';
 import { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
-
-import Auth from "../../components/Logout.jsx";
-import Login from "../../components/Login";
-
 import { cartContext } from "../../context/CartContext"
 
 import { addDoc, collection, getDocs } from 'firebase/firestore/lite';
@@ -49,6 +45,7 @@ const Checkout = (props) => {
 				items: cart,
 				total: total,
 			}
+
 			function formatarFecha(fecha) {
 				const opciones = { 
 					day: 'numeric', 
@@ -240,13 +237,17 @@ const Checkout = (props) => {
 
 /* 										<a href="#" className="primary-btn order-submit" onClick={handleCheckout}>
  */										
-										<button type='submit'className="primary-btn order-submit">
+										<button 
+											disabled={!userEmail}
+											type='submit' 
+											className="primary-btn order-submit">
 											Finalizar Orden
-										</button>
-										
+										</button>							
+
 									) : (
 										<h5>El carrito está vacío. Agrega productos para finalizar la orden.</h5>
 								)}
+								{!userEmail && <h5>Atención: Botón Deshabilitado. Para finalizar la compra debes estar logueado. Haz click en Mi cuenta</h5>}
 					</div>
 					</form>
 				</div>

@@ -21,9 +21,7 @@ const MisCompras = (props) => {
                 id: doc.id,
                 ...doc.data(),
               }));
-              //console.log("ordersData", ordersData);
               setOrders(ordersData);
-              console.log("ordersData:", ordersData);
           } else {
               setOrders([]);
               navigate('/');
