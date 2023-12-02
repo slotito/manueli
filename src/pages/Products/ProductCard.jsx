@@ -19,36 +19,36 @@ export function ProductCard({ product }) {
     return (
 
      <>
-    <div className="product">
-        <div className="product-img">
- 
-            <img src={product.thumbnail} alt="" />
-            <div className="product-label">
-                <span className="sale">-{product.discountPercentage}%</span>
-                <span className="new">NUEVO</span>
+        <div className="product">
+            <div className="product-img">
+    
+                <img src={product.thumbnail} alt="" />
+                <div className="product-label">
+                    <span className="sale">-{product.discountPercentage}%</span>
+                    <span className="new">NUEVO</span>
+                </div>
+                    
             </div>
-                
-        </div>
 
-        <div className="product-body">
-            <p className="product-category">{product.category}</p>
-            <h3 className="product-name"><a href="#">{product.title} - Cod: {product.ide}</a></h3>
-            <h4 className="product-price">$ {product.price} <del className="product-old-price">${(product.price / (1-product.discountPercentage/100)).toFixed(0 )}</del></h4>
-                <ButtonAddCart key={product.ide}
-                    classNameButton="add-to-wishlist"
-                    classNameHeart={wishIds.includes(product.ide) ? "fa fa-heart" : "fa fa-heart-o"}
-                    onClick={()=> wishProduct([product])}
-                />
-       </div>
-        <div className="add-to-cart">
-            <ButtonAddCart key={product.ide} 
-                title="al Carrito" 
-                classNameButton="add-to-cart-btn"
-                classNameHeart="fa fa-shopping-cart"
-                onClick={()=> buyProduct([product], 1, true)} 
-            />
+            <div className="product-body">
+                <p className="product-category">{product.category}</p>
+                <h3 className="product-name"><a href="#">{product.title} - Cod: {product.ide}</a></h3>
+                <h4 className="product-price">$ {product.price} <del className="product-old-price">${(product.price / (1-product.discountPercentage/100)).toFixed(0 )}</del></h4>
+                    <ButtonAddCart key={product.ide}
+                        classNameButton="add-to-wishlist"
+                        classNameHeart={wishIds.includes(product.ide) ? "fa fa-heart" : "fa fa-heart-o"}
+                        onClick={()=> wishProduct([product])}
+                    />
         </div>
-    </div>
+            <div className="add-to-cart">
+                <ButtonAddCart key={product.ide} 
+                    title="al Carrito" 
+                    classNameButton="add-to-cart-btn"
+                    classNameHeart="fa fa-shopping-cart"
+                    onClick={()=> buyProduct([product], 1, true)} 
+                />
+            </div>
+        </div>
     </>
 )}
 

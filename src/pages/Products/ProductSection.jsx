@@ -73,11 +73,11 @@ export function ProductSection ({id}) {
     }
 
     return (
+        <>
 
-
-        <div className="section">
             <div className="container">
                 <div className="row">
+
                     <div className="col-md-5 col-md-push-2">
                         <div id="product-main-img">
                             <div className="product-preview">
@@ -148,20 +148,10 @@ export function ProductSection ({id}) {
                             </ul>
                         </div>
                     </div>
-
-                    <div className="col-md-12">
-                        <div id="product-tab">
-
-                            <div className="tab-content">
-
-                            </div>
-
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
-        </div>
-
+        </>
 )}
 
 export default ProductSection
